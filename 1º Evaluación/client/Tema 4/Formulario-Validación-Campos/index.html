@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validación de Edad</title>
+    <style>
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        #edadForm { display: flex; flex-direction: column; gap: 10px; max-width: 250px; font-family: sans-serif; }
+        #edadForm input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+
+    </style>
+</head>
+<body>
+
+<form id="edadForm">
+    <div>
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" name="edad" min="1" max="120">
+    </div>
+
+    <div>
+        <label for="correo">Correo:</label>
+        <input type="text" id="correo" name="correo">
+    </div>
+
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+    </div>
+
+    <div>
+        <input type="submit" value="Enviar datos">
+    </div>
+
+    <p id="mensaje"></p>
+</form>
+
+
+<script>
+    document.getElementById("edadForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        var campoEdad = document.getElementById("edad").value.trim();
+        var campoCorreo = document.getElementById("correo").value.trim();
+        var campoNombre = document.getElementById("nombre").value.trim();
+        var mensaje = document.getElementById("mensaje");
+
+        function validar() {
+            mensaje.style.display = 'none';
+            mensaje.className = '';
+            mensaje.textContent = '';
+
+            var errores = [];
+
+            /*
+            if (campoEdad === "") {
+                mensaje.textContent = "El campo no puede estar vacío";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                return false;
+            }
+
+            if (isNaN(campoEdad)) {
+                mensaje.textContent = "El campo no contiene un número";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                return false;
+            }
+
+            var edadNumero = Number(campoEdad);
+
+            if (edadNumero < 1) {
+                mensaje.textContent = "La edad debe de ser positiva";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                return false;
+            }
+            */
+
+            var patron;
+            patron = /^-?\d+$/;
+
+            if (campoEdad === ""){
+                mensaje.textContent = "La edad no puede estar vacía";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, no es un número")
+                throw new Error("La edad no puede estar vacía");
+            }
+
+            if (!campoEdad.match(patron)){
+                mensaje.textContent = "La edad debe de ser númerica y positiva";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, no es un número")
+                throw new Error("La edad debe de ser númerica y positiva");
+            }
+
+            patron = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (campoCorreo === ""){
+                mensaje.textContent = "El correo no puede estar vacío";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, no es un número")
+                throw new Error("El correo no puede estar vacío");
+            }
+
+            if (!campoCorreo.match(patron)){
+                mensaje.textContent = "El correo debe de estar en formato correcto";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, el correo no esta escrito en formato correcto")
+                throw new Error("El correo debe de estar en formato correcto");
+            }
+
+            patron = /^.{3,}$/;
+
+            if (campoNombre === ""){
+                mensaje.textContent = "El nombre no puede estar vacío";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, no es un número")
+                throw new Error("El nombre no puede estar vacío");
+            }
+
+            if (!campoCorreo.match(patron)){
+                mensaje.textContent = "El nombre debe de estar en formato correcto";
+                mensaje.className = 'error';
+                mensaje.style.display = 'block';
+                console.log("Error, el nombre no esta escrito en formato correcto")
+                throw new Error("El nombre debe de estar en formato correcto");
+            }
+
+            return true;
+        }
+
+        /*
+        if (validarEdad()) {
+            console.log("d")
+            mensaje.textContent = "Datos enviados correctamente.";
+            mensaje.className = 'success';
+            mensaje.style.display = 'block';
+        }
+        */
+
+        try {
+            validar();
+            mensaje.textContent = "Datos enviados correctamente.";
+            mensaje.className = 'success';
+            mensaje.style.display = 'block';
+        } catch (error){
+            console.log("Ha habido algún error")
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/estilos.css" rel="text/css">
+    <script src="./js/script.js" type="module" defer></script>
+</head>
+<body>
+
+    <!-- <div class="contenedor-principal"></div> -->
+
+    <header>
+        <div>
+            <img src="./images/#" alt="Ies camp de morvedre" title="Ies Camp de Morvedre">
+        </div>
+        <h1>Cabecera</h1>
+        <nav>
+            <ul>
+                <li><a href="#" target="_blank">Ejemplo 1</a></li>
+                <li><a>Ejemplo 2</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        Cuerpo
+
+        <section class="card">
+            <article>
+                <p>Loren Ipsum</p>
+            </article>
+        </section>
+
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Formulario</legend>
+
+                <div>
+                    <label for="pass">Contraseña</label>
+                    <input type="password" id="pass" placeholder="Escribe la contraseña">
+                </div>
+
+                <div>
+                    <label for="mes">Mes</label>
+                    <input type="date" id="mes">
+                </div>
+
+                <div>
+                    <label for="color">Color</label>
+                    <input type="color" id="color">
+                </div>
+
+                <div>
+                    <label for="opciones">Opciones</label>
+                    <select>
+                        <option value="1" selected>Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                        <option value="3">Opcion 3</option>
+                    </select>
+                </div>
+
+                <!-- Para obligar a elegir entre Sí o No y evitar que se seleccionen ambas, no se puede
+                usar <input type="checkbox">, ya que están diseñados para selecciones independientes.
+                La solución correcta es utilizar <input type="radio"> con el mismo atributo name para ambos elementos. -->
+
+                <label for="si">Si</label>
+                <input type="checkbox" value="si">
+                <label for="no">No</label>
+                <input type="checkbox" value="no">
+
+                <textarea cols="10" rows="3" maxlength="255" style="resize: none;"></textarea>
+
+                <button type="submit">Mostrar información</button>
+                <button type="reset">Borrar información</button>
+
+            </fieldset>
+        </form>
+
+    </main>
+
+    <footer>
+        Pie
+    </footer>
+    
+</body>
+</html>

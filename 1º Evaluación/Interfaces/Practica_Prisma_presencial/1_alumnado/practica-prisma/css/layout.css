@@ -1,0 +1,213 @@
+/* =====================================================================
+   PRISMA · layout.css
+   ---------------------------------------------------------------------
+   Alumno/a: ______________________________________
+
+
+   Este es el ÚNICO archivo que debes modificar.
+   Sigue el orden de los apartados del enunciado (A1 ... A8).
+   Puedes añadir comentarios explicando tus decisiones: se valoran.
+   ===================================================================== */
+
+
+
+
+/* ---------------------------------------------------------------------
+   A1 · CABECERA
+   --------------------------------------------------------------------- */
+.cabecera {
+   display: flex;
+   flex-direction: row;
+
+
+   justify-content: space-between;
+   align-items: center;
+
+
+   flex-wrap: wrap;
+
+
+   gap: 1rem;
+
+
+   position: sticky;
+   top: 0;
+   z-index: 10;
+}
+
+
+.menu__lista li{
+   display: inline-block;
+   gap: 0.25rem;
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+   A2 · BOTONES
+   --------------------------------------------------------------------- */
+.boton {
+   padding: 0.75em 1.5em;
+}
+
+
+.boton:hover {
+   background-color: #b8301f;
+}
+
+
+.boton--grande {
+   font-size: clamp(1rem, 2vw, 2rem);
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+   A3 · PORTADA
+   --------------------------------------------------------------------- */
+.portada {
+   min-height: 80dvh;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-end;
+   align-items: flex-start;
+   gap: 1rem;
+}
+
+
+.portada__titulo {
+   font-size: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+
+.portada__entradilla {
+   font-size: min(100%, 40rem);
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+   A4 · ESTRUCTURA GLOBAL (versión móvil)
+   --------------------------------------------------------------------- */
+.revista {
+   display: grid;
+   grid-template-areas: 
+   "destacadas lateral"
+   "ultimas lateral"
+   "boletin boletin";
+
+
+   grid-template-columns: 1fr 300px;
+
+
+   
+   row-gap: 3rem;
+   column-gap: 2rem;
+   width: max(2rem, 1200px);
+
+
+   justify-content: center;
+   margin-top: 2.5rem;
+   margin-bottom: 2.5rem;
+}
+
+
+.destacadas {
+   grid-area: destacadas;
+}
+
+
+.ultimas {
+   grid-area: ultimas;
+}
+
+
+.lateral {
+   grid-area: lateral;
+}
+
+
+.boletin {
+   grid-area: boletin;
+}
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------
+   A5 · DESTACADOS Y ÚLTIMAS NOTICIAS
+   --------------------------------------------------------------------- */
+
+   .destacadas__rejilla{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+   }
+
+   .noticias{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, min-max(240px, 1fr));
+
+      gap: 1.5rem;
+   }
+
+
+
+
+
+/* ---------------------------------------------------------------------
+   A6 · NOTICIA
+   --------------------------------------------------------------------- */
+
+
+
+
+
+
+/* ---------------------------------------------------------------------
+   A7 · LO MÁS LEÍDO, BOLETÍN Y PIE
+   --------------------------------------------------------------------- */
+
+
+
+
+
+
+/* =====================================================================
+   A8 · PANTALLAS GRANDES
+   ===================================================================== */
+
+
+@media(width < 1024px) {
+
+
+   body {
+      padding-bottom: 3rem;
+   }
+
+
+   .revista {
+      display: grid;
+      grid-template-areas: 
+      "destacadas"
+      "ultimas"
+      "lateral"
+      "boletin";
+   }
+
+
+   .boton--suscribir {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+   }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobar Dni</title>
+</head>
+<body>
+
+<h3 th:if="${error != null}" th:text="${error}" style="color: red;"></h3>
+
+<form th:action="@{/buscar}" method="post">
+
+    <label for="dni">Introduce el Dni a bsucar</label>
+    <input type="text" name="dni" id="dni" required>
+    <div>
+        <button type="submit">Buscar</button>
+    </div>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva transferencia</title>
+</head>
+<body>
+<h1>Nueva transferencia</h1>
+<p th:text="'Cliente: ' + ${clienteDTO.nombre} + ' ' + ${clienteDTO.apellidos}"></p>
+<form th:action="@{/clientes/{idCliente}/cuentas/transferencia/save(idCliente=${clienteDTO.id})}"
+      th:object="${movimientoDTO}" method="POST">
+    <table border="0">
+        <tr>
+            <td>Cuenta de origen</td>
+            <td>:</td>
+            <td><select th:field="*{cuentaOrigenDTO.id}">
+                <option value="">-- Escoge una cuenta --</option>
+                <option th:each="cuenta : ${listaCuentasDTO}" th:value="${cuenta.id}"
+                        th:text="${cuenta.numeroCuenta} + ' (' + ${cuenta.saldoActual} + ' €)'"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Cuenta de destino</td>
+            <td>:</td>
+            <td><select th:field="*{cuentaDestinoDTO.id}">
+                <option value="">-- Escoge una cuenta --</option>
+                <option th:each="cuenta : ${listaCuentasDTO}" th:value="${cuenta.id}"
+                        th:text="${cuenta.numeroCuenta} + ' (' + ${cuenta.saldoActual} + ' €)'"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Importe</td>
+            <td>:</td>
+            <td><input type="number" step="0.01" th:field="*{importe}" /></td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{descripcion}" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Transferir" />
+</form>
+<br>
+<a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${clienteDTO.id})}">Volver a las cuentas</a>
+<br/>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

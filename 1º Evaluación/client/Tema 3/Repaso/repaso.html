@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JavaScript - Nivel 6/10</title>
+</head>
+<body>
+
+<h1>Ejercicios JavaScript - Arrays y objetos</h1>
+
+<h2>Ejercicio 1 - Productos disponibles</h2>
+<p>
+    A partir del array productos:
+</p>
+<ol>
+    <li>Utiliza filter para obtener los productos que tengan stock superior a 0.</li>
+    <li>Utiliza map para crear un nuevo array con los nombres de esos productos.</li>
+    <li>Muestra el resultado por consola.</li>
+</ol>
+
+<h2>Ejercicio 2 - Media de notas</h2>
+<p>
+    A partir del array alumnos:
+</p>
+<ol>
+    <li>Filtra los alumnos que hayan aprobado (nota igual o superior a 5).</li>
+    <li>Calcula la suma de sus notas utilizando reduce.</li>
+    <li>Calcula la media de los alumnos aprobados.</li>
+    <li>Muestra por consola la media final.</li>
+</ol>
+
+<h2>Ejercicio 3 - Búsqueda y modificación</h2>
+<p>
+    A partir del array usuarios:
+</p>
+<ol>
+    <li>Utiliza find para localizar al usuario con el nombre "Carlos".</li>
+    <li>Cambia su propiedad activo a true.</li>
+    <li>Muestra el objeto del usuario modificado.</li>
+</ol>
+
+<h2>Ejercicio 4 - Facturación de ventas</h2>
+<p>
+    A partir del array ventas:
+</p>
+<ol>
+    <li>Filtra únicamente las ventas del departamento "Informática".</li>
+    <li>Utiliza reduce para calcular el importe total de esas ventas, multiplicando precio por cantidad.</li>
+    <li>Muestra el importe total por consola.</li>
+</ol>
+
+<h2>Ejercicio 5 - Gestión de empleados</h2>
+<p>
+    A partir del array empleados:
+</p>
+<ol>
+    <li>Filtra los empleados que estén activos y tengan 18 años o más.</li>
+    <li>Utiliza forEach para mostrar un mensaje por cada empleado con su nombre y edad.</li>
+    <li>El formato debe ser: "Nombre: Ana - Edad: 25".</li>
+</ol>
+
+<h2>Ejercicio 6 - Resumen de pedidos</h2>
+<p>
+    A partir del array pedidos:
+</p>
+<ol>
+    <li>Utiliza map para crear un nuevo array de objetos.</li>
+    <li>Cada objeto debe contener el nombre del cliente y el importe total del pedido (precio por cantidad).</li>
+    <li>Añade una propiedad estado: "Pedido grande" si el importe supera los 100 euros y "Pedido pequeño" en caso contrario.</li>
+    <li>Muestra el nuevo array por consola.</li>
+</ol>
+
+<h2>Ejercicio 7 - Salarios por departamento</h2>
+<p>
+    A partir del array trabajadores:
+</p>
+<ol>
+    <li>Filtra los trabajadores del departamento "Desarrollo".</li>
+    <li>Utiliza map para obtener únicamente sus salarios.</li>
+    <li>Utiliza reduce para calcular el salario total.</li>
+    <li>Muestra el salario total y el número de trabajadores del departamento.</li>
+</ol>
+
+<h2>Ejercicio 8 - Gestión de biblioteca</h2>
+<p>
+    A partir del array libros:
+</p>
+<ol>
+    <li>Filtra los libros que estén disponibles.</li>
+    <li>De esos libros, filtra los que tengan más de 300 páginas.</li>
+    <li>Utiliza reduce para calcular el número total de páginas de esos libros.</li>
+    <li>Utiliza find para localizar el primer libro cuyo autor sea "George Orwell".</li>
+    <li>Muestra todos los resultados por consola.</li>
+</ol>
+
+<script>
+
+    // EJERCICIO 1
+    const productos = [
+        { nombre: "Teclado", precio: 30, stock: 5 },
+        { nombre: "Ratón", precio: 15, stock: 0 },
+        { nombre: "Monitor", precio: 180, stock: 3 },
+        { nombre: "Auriculares", precio: 45, stock: 0 },
+        { nombre: "Webcam", precio: 60, stock: 8 }
+    ];
+
+    console.log("Ejercicio 1");
+
+    console.log("Array principal: ", productos);
+
+    const productosFiltrados = productos.filter(productos => productos.stock > 0);
+
+    console.log("Productos filtrados " +
+        " de 0: ", productosFiltrados);
+
+    const nombresProductos = productosFiltrados.map(producto => producto.nombre);
+
+    console.log("Nombres de productos filtrados: " + nombresProductos);
+
+
+    // EJERCICIO 2 - Media de notas
+    const alumnos = [
+        { nombre: "Laura", nota: 8 },
+        { nombre: "Marcos", nota: 4 },
+        { nombre: "Sara", nota: 6 },
+        { nombre: "Javier", nota: 3 },
+        { nombre: "Elena", nota: 9 },
+        { nombre: "Pablo", nota: 5 }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    const aprobados = alumnos.filter(alumno => alumno.nota >= 5)
+    const sumaNotas = aprobados.reduce((acumulador, alumno) => alumno.nota + acumulador, 0);
+    media = sumaNotas / aprobados.length;
+
+    console.log("Alumnos aprobados:", aprobados);
+    console.log("Suma de notas:", sumaNotas);
+    console.log("Media de aprobados:", media);
+
+    // EJERCICIO 3 - Búsqueda y modificación
+    const usuarios = [
+        { nombre: "Ana", edad: 22, activo: true },
+        { nombre: "Carlos", edad: 30, activo: false },
+        { nombre: "Lucía", edad: 19, activo: true },
+        { nombre: "David", edad: 35, activo: false }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    usuarioEncontrado = usuarios.find(usuario => usuario.nombre === "Carlos");
+    usuarioEncontrado.activo = true;
+
+    console.log("Usuario modificado:", usuarioEncontrado);
+
+    // EJERCICIO 4 - Facturación de ventas
+    const ventas = [
+        { departamento: "Informática", precio: 500, cantidad: 2 },
+        { departamento: "Mobiliario", precio: 200, cantidad: 3 },
+        { departamento: "Informática", precio: 100, cantidad: 4 },
+        { departamento: "Alimentación", precio: 20, cantidad: 10 },
+        { departamento: "Informática", precio: 750, cantidad: 1 }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    ventasInformatica = ventas.filter(ventas => ventas.departamento === "Informática");
+
+    importeTotal = ventasInformatica.reduce((acumulador, ventas) => ventas.precio + acumulador, 0);
+
+    console.log("Ventas de informática:", ventasInformatica);
+    console.log("Importe total:", importeTotal);
+
+    // EJERCICIO 5 - Gestión de empleados
+    const empleados = [
+        { nombre: "Ana", edad: 25, activo: true },
+        { nombre: "Pedro", edad: 17, activo: true },
+        { nombre: "Lucía", edad: 32, activo: false },
+        { nombre: "Carlos", edad: 28, activo: true },
+        { nombre: "Marta", edad: 16, activo: false },
+        { nombre: "Javier", edad: 40, activo: true }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    const empleadosSeleccionados = empleados.filter(empleado => empleado.activo && empleado.edad >= 18);
+
+    empleadosSeleccionados.forEach(empleado => console.log(`Nombre: ${empleado.nombre} - Edad: ${empleado.edad}`))
+
+    console.log("Empleados seleccionados:", empleadosSeleccionados);
+
+    // EJERCICIO 6 - Resumen de pedidos
+    const pedidos = [
+        { cliente: "Laura", precio: 25, cantidad: 2 },
+        { cliente: "Carlos", precio: 60, cantidad: 3 },
+        { cliente: "Marta", precio: 15, cantidad: 4 },
+        { cliente: "David", precio: 120, cantidad: 1 }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    resumenPedidos = pedidos.map(cliente => ({nombre:cliente.cliente,clientePrecio: cliente.precio * cliente.cantidad,
+        estado: (cliente.precio * cliente.cantidad) > 100 ? cliente.estado = "Pedido grande" : cliente.estado = "Pedido pequeño"}))
+
+    console.log("Resumen de pedidos:", resumenPedidos);
+
+    // EJERCICIO 7 - Salarios por departamento
+    const trabajadores = [
+        { nombre: "Ana", departamento: "Desarrollo", salario: 2200 },
+        { nombre: "Carlos", departamento: "Ventas", salario: 1900 },
+        { nombre: "Laura", departamento: "Desarrollo", salario: 2500 },
+        { nombre: "Pedro", departamento: "Marketing", salario: 2100 },
+        { nombre: "Marta", departamento: "Desarrollo", salario: 2800 }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    trabajadoresDesarrollo = trabajadores.filter(trabajador => trabajador.departamento === "Desarrollo");
+
+    salarios = trabajadoresDesarrollo.map(x => x.salario);
+
+    salarioTotal = salarios.reduce((acc, salario) => salario + acc, 0);
+
+    numeroTrabajadores = `Trabajadores: ${trabajadoresDesarrollo.length} - Salarios: ${salarioTotal}`
+
+    console.log("Trabajadores de desarrollo:", trabajadoresDesarrollo);
+    console.log("Salarios:", salarios);
+    console.log("Salario total:", salarioTotal);
+    console.log("Número de trabajadores:", numeroTrabajadores);
+
+
+
+    // EJERCICIO 8 - Gestión de biblioteca
+    const libros = [
+        { titulo: "El Quijote", autor: "Cervantes", paginas: 500, disponible: true },
+        { titulo: "1984", autor: "George Orwell", paginas: 350, disponible: true },
+        { titulo: "Rebelión en la granja", autor: "George Orwell", paginas: 150, disponible: false },
+        { titulo: "Los pilares de la Tierra", autor: "Ken Follett", paginas: 900, disponible: true },
+        { titulo: "El principito", autor: "Saint-Exupéry", paginas: 120, disponible: true }
+    ];
+
+    // TU CÓDIGO AQUÍ
+
+    librosDisponibles = libros.filter(libro=> libro.disponible);
+
+    librosLargos = librosDisponibles.filter(libro => libro.paginas > 300);
+
+    totalPaginas = librosLargos.reduce((acc, libro)=> libro.paginas + acc, 0);
+
+    libroOrwell = libros.find(libro => libro.autor === "George Orwell");
+
+    console.log("Libros disponibles:", librosDisponibles);
+    console.log("Libros de más de 300 páginas:", librosLargos);
+    console.log("Total de páginas:", totalPaginas);
+    console.log("Libro de George Orwell:", libroOrwell);
+
+
+
+    // =====================================
+    // ESCRIBE TUS SOLUCIONES A CONTINUACIÓN
+    // =====================================
+
+
+</script>
+
+</body>
+</html>
+>

@@ -1,0 +1,42 @@
+ 📱 CLIENTE (Navegador, Postman, App Móvil)
+     │
+     │ 🚀 Envía/Recibe HTTP (JSON)
+     ▼
+ ┌────────────────────────────────────────────────────────┐
+ │ 1. CAPA DE PRESENTACIÓN (Controller)                   │
+ │    - @RestController / @Controller                     │
+ │    - Recibe peticiones, gestiona rutas y códigos HTTP.  │
+ └───────────────────────────┬────────────────────────────┘
+                             │
+                             │ 📦 Transporta datos usando:
+                             ▼
+               ┌───────────────────────────┐
+               │ DTO (Data Transfer Object)│
+               └─────────────┬─────────────┘
+                             │
+                             │ Passes DTO
+                             ▼
+ ┌────────────────────────────────────────────────────────┐
+ │ 2. CAPA DE NEGOCIO (Service)                           │
+ │    - @Service / @Transactional                        │
+ │    - Aplica reglas de negocio y lógica de la app.      │
+ │    - Mapea (transforma) DTOs ◄──► Entities.            │
+ └───────────────────────────┬────────────────────────────┘
+                             │
+                             │ Manipula / Consulta usando:
+                             ▼
+               ┌───────────────────────────┐
+               │ ENTITY (Clases @Entity)   │
+               └─────────────┬─────────────┘
+                             │
+                             │ Transfiere Entidades
+                             ▼
+ ┌────────────────────────────────────────────────────────┐
+ │ 3. CAPA DE ACCESO A DATOS (Repository)                 │
+ │    - @Repository / Extiende JpaRepository              │
+ │    - Ejecuta consultas a la Base de Datos.             │
+ └───────────────────────────┬────────────────────────────┘
+                             │
+                             │ 🗄️ SQL / NoSQL queries
+                             ▼
+                     💾 BASE DE DATOS

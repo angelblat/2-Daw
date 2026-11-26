@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="inclineOneClick.css">
+
+    <style>
+
+        .oculto{
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <header>
+        <strong> HOLA </strong>
+    </header>
+</div>
+<div id="micaja" class="caja" onclick="ToggleShownCaja()">
+
+    <strong>!Haz click aqui!</strong> este contenedor ocultará al pulsarlo
+
+</div>
+<div>
+
+    <button id="idmiboton" class="boton1" onclick="ToggleShownCaja()">
+        hola
+    </button>
+</div>
+
+<div>
+
+    <button id="idboton2" class="boton2" onclick="Cambiacolor()">
+        boton2
+    </button>
+</div>
+
+
+
+
+
+<script>
+    function ocultarCaja() {
+        var caja = document.getElementById('micaja');
+        caja.style.display = 'none';
+    }
+
+    function mostrarCaja(){
+        var caja = document.getElementById("micaja");
+        caja.style.display = "block";
+    }
+
+    function ToggleShownCaja(){
+        var caja = document.getElementById("micaja");
+        caja.classList.toggle("oculto")
+    }
+
+    function Cambiacolor(){
+
+        var boton = document.getElementById("idmiboton")
+        boton.style.backgroundColor = 'red';
+    }
+
+</script>
+
+
+</body>
+</html>

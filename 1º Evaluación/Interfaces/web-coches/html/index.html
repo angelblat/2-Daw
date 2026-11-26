@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoTrack | Compra y venta de coches</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+    <!-- CABECERA -->
+    <header class="cabecera">
+        <a href="#" class="logo">
+            <span class="logo-icono">🚘</span>
+            <span>AutoTrack</span>
+        </a>
+
+        <nav class="navegacion">
+            <a href="#" class="activo">Inicio</a>
+            <a href="#coches">Comprar</a>
+            <a href="#vender">Vender</a>
+            <a href="#ventajas">Financiación</a>
+            <a href="#nosotros">Nosotros</a>
+        </nav>
+
+        <div class="acciones">
+            <a href="#buscador" aria-label="Buscar">⌕</a>
+            <a href="#coches" aria-label="Favoritos">♡</a>
+            <a href="#" aria-label="Usuario">♙</a>
+            <a href="#vender" class="boton boton-principal">Publicar anuncio</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PORTADA PRINCIPAL -->
+        <section class="portada" id="buscador">
+
+            <div class="portada-contenido">
+                <p class="etiqueta">COCHES DE OCASIÓN Y KM 0</p>
+
+                <h1>Encuentra el coche<br>que te mueve</h1>
+
+                <p class="descripcion">
+                    Miles de coches de segunda mano y nuevos, al mejor precio.
+                    Compra o vende de forma segura y sencilla.
+                </p>
+
+                <form class="buscador">
+
+                    <div class="filtro">
+                        <label for="marca">Marca</label>
+                        <select id="marca" name="marca">
+                            <option value="">Todas</option>
+                            <option>SEAT</option>
+                            <option>Volkswagen</option>
+                            <option>BMW</option>
+                            <option>Audi</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro">
+                        <label for="modelo">Modelo</label>
+                        <select id="modelo" name="modelo">
+                            <option value="">Todos</option>
+                            <option>Ibiza</option>
+                            <option>T-Roc</option>
+                            <option>Serie 1</option>
+                            <option>Q3</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro">
+                        <label for="precio">Precio máximo</label>
+                        <select id="precio" name="precio">
+                            <option value="">Sin límite</option>
+                            <option value="10000">10.000 €</option>
+                            <option value="15000">15.000 €</option>
+                            <option value="20000">20.000 €</option>
+                            <option value="30000">30.000 €</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="boton boton-principal">
+                        ⌕ Buscar
+                    </button>
+
+                </form>
+
+                <div class="garantias">
+                    <span>♧ Vehículos revisados</span>
+                    <span>🚚 Entrega a domicilio</span>
+                    <span>♧ Garantía incluida</span>
+                </div>
+            </div>
+
+            <div class="portada-imagen">
+                <img src="img/coche-principal.jpg"
+                     alt="Coche de ocasión destacado">
+            </div>
+
+        </section>
+
+        <!-- COCHES DESTACADOS -->
+        <section class="seccion coches" id="coches">
+
+            <div class="encabezado-seccion">
+                <div>
+                    <p class="etiqueta">DESTACADOS</p>
+                    <h2>Coches en venta</h2>
+                </div>
+
+                <a href="#" class="enlace-ver">Ver todos los coches →</a>
+            </div>
+
+            <div class="rejilla-coches">
+
+                <article class="tarjeta-coche">
+                    <div class="coche-foto">
+                        <img src="img/seat-ibiza.jpg" alt="SEAT Ibiza">
+                        <span class="destacado">Destacado</span>
+                        <button class="favorito" aria-label="Añadir a favoritos">♡</button>
+                    </div>
+
+                    <div class="coche-info">
+                        <h3>SEAT Ibiza</h3>
+                        <p class="modelo">1.0 TSI 95cv Style</p>
+
+                        <div class="datos-coche">
+                            <span>▦ 2021</span>
+                            <span>◉ 45.000 km</span>
+                            <span>♧ Gasolina</span>
+                            <span>⚙ Manual</span>
+                        </div>
+
+                        <div class="precio-coche">
+                            <strong>12.900 €</strong>
+                            <a href="#">Ver detalle →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tarjeta-coche">
+                    <div class="coche-foto">
+                        <img src="img/volkswagen-troc.jpg" alt="Volkswagen T-Roc">
+                        <button class="favorito" aria-label="Añadir a favoritos">♡</button>
+                    </div>
+
+                    <div class="coche-info">
+                        <h3>Volkswagen T-Roc</h3>
+                        <p class="modelo">1.5 TSI 150cv Advance</p>
+
+                        <div class="datos-coche">
+                            <span>▦ 2022</span>
+                            <span>◉ 32.000 km</span>
+                            <span>♧ Gasolina</span>
+                            <span>⚙ Manual</span>
+                        </div>
+
+                        <div class="precio-coche">
+                            <strong>22.500 €</strong>
+                            <a href="#">Ver detalle →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tarjeta-coche">
+                    <div class="coche-foto">
+                        <img src="img/bmw-serie1.jpg" alt="BMW Serie 1">
+                        <button class="favorito" aria-label="Añadir a favoritos">♡</button>
+                    </div>
+
+                    <div class="coche-info">
+                        <h3>BMW Serie 1</h3>
+                        <p class="modelo">118d Business</p>
+
+                        <div class="datos-coche">
+                            <span>▦ 2020</span>
+                            <span>◉ 68.000 km</span>
+                            <span>♧ Diésel</span>
+                            <span>⚙ Manual</span>
+                        </div>
+
+                        <div class="precio-coche">
+                            <strong>18.900 €</strong>
+                            <a href="#">Ver detalle →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tarjeta-coche">
+                    <div class="coche-foto">
+                        <img src="img/audi-q3.jpg" alt="Audi Q3">
+                        <button class="favorito" aria-label="Añadir a favoritos">♡</button>
+                    </div>
+
+                    <div class="coche-info">
+                        <h3>Audi Q3</h3>
+                        <p class="modelo">35 TFSI Advanced</p>
+
+                        <div class="datos-coche">
+                            <span>▦ 2021</span>
+                            <span>◉ 54.000 km</span>
+                            <span>♧ Gasolina</span>
+                            <span>⚙ Automático</span>
+                        </div>
+
+                        <div class="precio-coche">
+                            <strong>28.900 €</strong>
+                            <a href="#">Ver detalle →</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CATEGORÍAS -->
+        <section class="seccion categorias">
+            <div class="encabezado-seccion">
+                <div>
+                    <p class="etiqueta">BUSCA POR CATEGORÍA</p>
+                    <h2>¿Qué tipo de coche buscas?</h2>
+                </div>
+
+                <a href="#" class="enlace-ver">Ver todos los modelos →</a>
+            </div>
+
+            <div class="rejilla-categorias">
+                <a href="#" class="tarjeta-categoria">
+                    <span>🚗</span>
+                    <h3>Utilitarios</h3>
+                </a>
+
+                <a href="#" class="tarjeta-categoria">
+                    <span>🚙</span>
+                    <h3>Compactos</h3>
+                </a>
+
+                <a href="#" class="tarjeta-categoria">
+                    <span>🚐</span>
+                    <h3>SUV / Todoterreno</h3>
+                </a>
+
+                <a href="#" class="tarjeta-categoria">
+                    <span>🚘</span>
+                    <h3>Berlinas</h3>
+                </a>
+
+                <a href="#" class="tarjeta-categoria">
+                    <span>🚐</span>
+                    <h3>Furgonetas</h3>
+                </a>
+
+                <a href="#" class="tarjeta-categoria">
+                    <span>🏎️</span>
+                    <h3>Deportivos</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- VENTAJAS -->
+        <section class="seccion ventajas" id="ventajas">
+
+            <article class="ventaja">
+                <div class="ventaja-icono">♧</div>
+                <h3>Transparencia total</h3>
+                <p>Historial del vehículo y toda la información clara y verificada.</p>
+            </article>
+
+            <article class="ventaja">
+                <div class="ventaja-icono">♙</div>
+                <h3>Compra segura</h3>
+                <p>Pagos protegidos y garantía en todos nuestros coches.</p>
+            </article>
+
+            <article class="ventaja">
+                <div class="ventaja-icono">▤</div>
+                <h3>Financiación a tu medida</h3>
+                <p>Consigue las mejores condiciones con nuestros partners.</p>
+            </article>
+
+            <article class="ventaja">
+                <div class="ventaja-icono">♧</div>
+                <h3>Atención personalizada</h3>
+                <p>Te ayudamos en todo el proceso, sin complicaciones.</p>
+            </article>
+
+        </section>
+
+        <!-- CÓMO FUNCIONA -->
+        <section class="seccion proceso" id="nosotros">
+
+            <div class="proceso-contenido">
+                <p class="etiqueta">SENCILLO Y RÁPIDO</p>
+                <h2>Así de fácil</h2>
+
+                <div class="pasos">
+
+                    <article class="paso">
+                        <span class="numero">1</span>
+                        <h3>Busca tu coche</h3>
+                        <p>Filtra por marca, modelo y precio y encuentra el ideal.</p>
+                    </article>
+
+                    <article class="paso">
+                        <span class="numero">2</span>
+                        <h3>Contacta con el vendedor</h3>
+                        <p>Haz una consulta o pide una cita para verlo.</p>
+                    </article>
+
+                    <article class="paso">
+                        <span class="numero">3</span>
+                        <h3>Disfruta de tu coche</h3>
+                        <p>Revisa la documentación, realiza el pago y listo.</p>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="banner-vender" id="vender">
+                <div>
+                    <p class="etiqueta">VENDE TU COCHE</p>
+                    <h2>Publica tu anuncio<br>en minutos</h2>
+                    <p>Llega a miles de compradores de forma rápida y segura.</p>
+                    <a href="#" class="boton boton-claro">Publicar anuncio</a>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie">
+
+        <div class="pie-logo">
+            <a href="#" class="logo">
+                <span class="logo-icono">🚘</span>
+                <span>AutoTrack</span>
+            </a>
+            <p>Coches que te llevan más lejos</p>
+        </div>
+
+        <div class="pie-columna">
+            <h3>Enlaces</h3>
+            <a href="#coches">Comprar</a>
+            <a href="#vender">Vender</a>
+            <a href="#ventajas">Financiación</a>
+            <a href="#nosotros">Nosotros</a>
+        </div>
+
+        <div class="pie-columna">
+            <h3>Ayuda</h3>
+            <a href="#">Preguntas frecuentes</a>
+            <a href="#">Contacto</a>
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Política de privacidad</a>
+        </div>
+
+        <div class="pie-columna">
+            <h3>Síguenos</h3>
+            <div class="redes">
+                <a href="#" aria-label="Instagram">◎</a>
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="YouTube">▶</a>
+                <a href="#" aria-label="X">𝕏</a>
+            </div>
+        </div>
+
+        <p class="copyright">
+            © 2026 AutoTrack. Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+</body>
+</html>

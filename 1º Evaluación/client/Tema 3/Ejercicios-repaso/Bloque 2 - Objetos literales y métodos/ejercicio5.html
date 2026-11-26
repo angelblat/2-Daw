@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5: Creación de un objeto literal y acceso a propiedades
+    </title>
+</head>
+<body>
+    <script>
+        const estudiante = {
+            nombre : "Laura",
+            edad : 20,
+            curso : "2º DAW",
+            imprimeEstudiante() {
+                return `Estudiante: ${this.nombre}, Edad: ${this.edad}, Curso: ${this.curso}`;
+            }
+        }
+
+        console.log(estudiante.imprimeEstudiante());
+
+    </script>
+</body>
+</html>

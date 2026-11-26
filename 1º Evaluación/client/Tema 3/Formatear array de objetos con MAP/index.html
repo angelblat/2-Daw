@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array de objetos con MAP</title>
+</head>
+<body>
+
+<script >
+    const productos = [
+        { id: 1, nombre: "Teclado Mecánico", precio: 59.99 },
+        { id: 2, nombre: "Ratón óptico", precio: 25.00 },
+        { id: 3, nombre: "Monitor 24 pulgadas", precio: 149.00 }
+    ];
+
+    const productoFormateados = productos.map(producto =>{
+        return `Producto ${producto.id}: ${producto.nombre} - ${producto.precio.toFixed(2)}`;
+    });
+
+    console.log(productoFormateados);
+
+</script>
+</body>
+</html>

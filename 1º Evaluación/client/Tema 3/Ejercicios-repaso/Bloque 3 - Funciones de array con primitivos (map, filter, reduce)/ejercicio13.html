@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 13: Búsqueda del valor máximo con reduce
+    </title>
+</head>
+<body>
+<script>
+    const puntuaciones = [45, 82, 19, 94, 67];
+    const puntuacionMasAlta = puntuaciones.reduce(function(acc, puntuacion) {
+            return puntuacion > acc ? puntuacion : acc;
+        });
+    console.log(puntuacionMasAlta);
+</script>
+</body>
+</html>

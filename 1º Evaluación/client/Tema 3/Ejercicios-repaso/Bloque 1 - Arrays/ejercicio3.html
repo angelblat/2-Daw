@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3: Búsqueda con includes e indexOf
+    </title>
+</head>
+<body>
+<script>
+    const frutas = ["Manzana", "Plátano", "Naranja", "Fresa"];
+    let existe = frutas.includes("Plátano");
+    muestraConsola = texto => console.log(texto);
+
+    existe ? muestraConsola("Plátano existe en frutas") : muestraConsola("Plátano no existe en frutas");
+    const posicionNaranja = frutas.indexOf("Naranja");
+    muestraConsola("La posición de la naranja es la: " + (posicionNaranja+1));
+
+    const elementoInventado = "uvas";
+    existe = frutas.indexOf(elementoInventado);
+    if (existe !== -1){
+        muestraConsola("El elemento " + elementoInventado + " existe en el array.")
+    } else {
+        muestraConsola("El elemento " + elementoInventado + " no existe en el array.")
+    }
+</script>
+</body>
+</html>

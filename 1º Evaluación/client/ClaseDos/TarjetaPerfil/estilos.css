@@ -1,0 +1,32 @@
+#tarjeta-perfil{
+    border: 1px aquamarine;
+    text-align: center;
+    box-shadow: 1px 1px 1px 1px black;
+    padding-top: 5px;
+}
+
+* {
+    font-family: "Bauhaus 93", sans-serif;
+}
+
+#nombre-usuario, #descripcion-usuario {
+    font-size: 20px;
+    text-shadow: 1px 1px 2px wheat;
+    margin: 8px 0; /* Un poco de margen para que no se peguen */
+}
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

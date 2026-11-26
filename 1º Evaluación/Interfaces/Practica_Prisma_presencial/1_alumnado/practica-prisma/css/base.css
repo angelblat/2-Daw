@@ -1,0 +1,248 @@
+/* =====================================================================
+   PRISMA · base.css
+   ---------------------------------------------------------------------
+   NO MODIFIQUES ESTE ARCHIVO.
+   Aquí solo está la "piel" de la web: fuentes, colores, bordes, fondos
+   y rellenos de los componentes. NO hay nada de maquetación (ni display
+   flex/grid, ni position, ni gap, ni anchos, ni media queries).
+   Tu trabajo va entero en css/layout.css
+   ===================================================================== */
+
+/* ---------- Fuentes (incluidas en la carpeta /fonts) ---------- */
+@font-face {
+    font-family: "Gloock";
+    src: url("../fonts/Gloock-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Instrument";
+    src: url("../fonts/InstrumentSans-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Instrument";
+    src: url("../fonts/InstrumentSans-Bold.ttf");
+    font-weight: 700;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1, h2, h3,
+p, ul, ol {
+    margin: 0;
+}
+
+ul, ol {
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------- Página ---------- */
+body {
+    font-family: "Instrument", system-ui, sans-serif;
+    line-height: 1.5;
+    color: #1b1b1f;
+    background-color: #f6f3ee;
+}
+
+h1, h2, h3,
+.logo {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    background-color: #e2412e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.boton--grande {
+    font-size: 1.15rem;
+}
+
+.boton--suscribir {
+    background-color: #1b1b1f;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    padding: 1rem 1.5rem;
+    background-color: #f6f3ee;
+    border-bottom: 1px solid #e4ded5;
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+.logo span {
+    color: #e2412e;
+}
+
+.menu a {
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+}
+
+/* ---------- Portada ---------- */
+.portada {
+    padding: 2rem 1.5rem 3rem;
+    color: #ffffff;
+    background-color: #0b2236;
+    background-image: url("../img/portada.svg");
+    background-size: cover;
+    background-position: center;
+}
+
+.portada__seccion {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background-color: #e2412e;
+    border-radius: 3px;
+}
+
+.portada__titulo {
+    text-shadow: 0 2px 20px rgb(0 0 0 / 0.35);
+}
+
+.portada__entradilla {
+    font-size: 1.15rem;
+}
+
+.portada__autor {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* ---------- Títulos de sección ---------- */
+.seccion__titulo {
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #1b1b1f;
+}
+
+/* ---------- Noticias ---------- */
+.noticia {
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e4ded5;
+    border-radius: 6px;
+}
+
+.noticia img {
+    aspect-ratio: 3 / 2;
+    border-radius: 3px;
+}
+
+.etiqueta {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background-color: #1b1b1f;
+    border-radius: 3px;
+}
+
+.noticia__titulo {
+    font-size: 1.3rem;
+}
+
+.noticia--principal .noticia__titulo {
+    font-size: 2rem;
+}
+
+.noticia__resumen {
+    color: #4a4a52;
+}
+
+.noticia__meta {
+    font-size: 0.85rem;
+    color: #7a7a85;
+}
+
+/* ---------- Lo más leído ---------- */
+.lateral {
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-top: 4px solid #e2412e;
+    border-radius: 6px;
+}
+
+.lateral__titulo {
+    font-size: 1.6rem;
+}
+
+.ranking__item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e4ded5;
+}
+
+.ranking__numero {
+    font-family: "Gloock", Georgia, serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: #e2412e;
+}
+
+.ranking__enlace {
+    font-weight: 700;
+}
+
+/* ---------- Boletín ---------- */
+.boletin {
+    padding: 2rem;
+    color: #ffffff;
+    background-color: #1f3a5f;
+    border-radius: 8px;
+}
+
+.boletin__titulo {
+    font-size: 1.8rem;
+}
+
+.boletin__campo {
+    padding: 0.8rem 1rem;
+    font: inherit;
+    border: none;
+    border-radius: 4px;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #7a7a85;
+    border-top: 1px solid #e4ded5;
+}

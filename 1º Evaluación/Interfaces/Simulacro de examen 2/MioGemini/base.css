@@ -1,0 +1,188 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f8f9fa;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.cabecera {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.nav__lista a {
+  padding: 0.5rem 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.nav__lista a:hover {
+  background-color: #f1f5f9;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.btn--reservar {
+  background-color: #0f172a;
+}
+
+.btn--hero {
+  font-size: 1.1rem;
+}
+
+.hero {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.3)),
+              linear-gradient(135deg, #1e3a8a, #0f766e);
+  color: #ffffff;
+  padding: 3rem 2rem;
+}
+
+.hero__tag {
+  background-color: #2563eb;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+}
+
+.seccion__titulo {
+  font-family: Georgia, serif;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1e293b;
+}
+
+.tarjeta {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.tarjeta__img {
+  width: 100%;
+  height: 180px;
+  border-radius: 4px;
+}
+
+.tarjeta--destacada .tarjeta__img {
+  height: 260px;
+}
+
+.img-1 { background: linear-gradient(45deg, #f97316, #eab308); }
+.img-2 { background: linear-gradient(45deg, #06b6d4, #3b82f6); }
+.img-3 { background: linear-gradient(45deg, #10b981, #059669); }
+.img-4 { background: linear-gradient(45deg, #6366f1, #a855f7); }
+.img-5 { background: linear-gradient(45deg, #ec4899, #f43f5e); }
+.img-6 { background: linear-gradient(45deg, #14b8a6, #0ea5e9); }
+
+.etiqueta {
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+}
+
+.tarjeta__titulo {
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.tarjeta__desc {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.tarjeta__meta {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.consejos {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.consejo__item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.consejo__num {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.consejo__texto {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.club {
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+}
+
+.club__titulo {
+  font-family: Georgia, serif;
+  font-size: 1.75rem;
+}
+
+.club__input {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  font-size: 1rem;
+}
+
+.pie {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid #cbd5e1;
+  color: #64748b;
+  font-size: 0.875rem;
+}

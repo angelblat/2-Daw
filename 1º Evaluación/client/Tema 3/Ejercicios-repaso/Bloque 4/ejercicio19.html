@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 19: Combinar filter y reduce
+    </title>
+</head>
+<body>
+<script>
+    const plantilla = [
+        { nombre: "Elena", departamento: "IT", salario: 2800 },
+        { nombre: "Pablo", departamento: "Ventas", salario: 2100 },
+        { nombre: "Carmen", departamento: "IT", salario: 3100 },
+        { nombre: "David", departamento: "Marketing", salario: 2400 }
+    ];
+
+    const plantillaIT = plantilla.filter(persona => persona.departamento === "IT");
+
+    const plantillaITSalarioTotal = plantillaIT.reduce((acc, persona) => acc + persona.salario, 0);
+
+    const plantillaITSalarioTotal2 = plantilla.reduce((acc, persona) => persona.departamento === "IT" ? acc + persona.salario : acc, 0);
+
+    console.log(plantillaITSalarioTotal2);
+
+    console.log(plantillaIT);
+    console.log(plantillaITSalarioTotal)
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 18: Cálculo de totales acumulados con reduce
+    </title>
+</head>
+<body>
+<script>
+    const carrito = [
+        { producto: "Manzanas", precio: 2.50, cantidad: 3 },
+        { producto: "Leche", precio: 1.10, cantidad: 6 },
+        { producto: "Pan", precio: 0.90, cantidad: 2 }
+    ];
+
+    const precioTotalArticulos = carrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
+
+    console.log(precioTotalArticulos.toFixed(2));
+</script>
+</body>
+</html>

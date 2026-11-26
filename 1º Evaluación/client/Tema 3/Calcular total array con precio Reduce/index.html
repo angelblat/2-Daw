@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sumar precios de una array con reduce</title>
+</head>
+<body>
+
+<script>
+    const numeros = [1, 2, 3, 4, 5];
+
+    const sumarNumeros = numeros.reduce((acumulador, numero) => {
+        return acumulador + numero;
+    }, 0);
+
+    console.log(sumarNumeros);
+
+</script>
+</body>
+</html>

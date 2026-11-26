@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5357971c-f5f7-4d2f-a139-1bce8a4a329f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/.idea/ClaseDos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/ControlVisionCaja/visionCaja.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/ControlVisionCaja/visionCaja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EjerciciosPracticos/ejercicio1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EjerciciosPracticos/ejercicio2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EjerciciosPracticos/index1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EjerciciosPracticos/index2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EventosOneClick/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/EventosOneClick/inlineOneClick.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/TarjetaPerfil/3135768.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/TarjetaPerfil/estilos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/TarjetaPerfil/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/TarjetaPerfil/logica.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClaseDos/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ejemplo de Map, Filter y Reduce/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ejemplo de Map, Filter y Reduce/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ejemplo de Map, Filter y Reduce/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/.idea/EjerciciosJavaScript.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio1/ejercicio1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio1/ejercicio1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio2/ejercicio2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio2/ejercicio2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio4/ejercicio4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio4/ejercicio4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio5/ejercicio5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio5/ejercicio5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio6-ListaTareas/ejercicio6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio6-ListaTareas/ejercicio6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio7/Ejercicio7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/Ejercicio7/Ejercicio7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/EjercicioNotas/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/EjercicioNotas/.idea/EjercicioNotas.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/EjercicioNotas/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/EjercicioNotas/ejercicio.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/EjercicioNotas/ejercicio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/ejercicio3/ejercicio3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjerciciosJavaScript/ejercicio3/ejercicio3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejer1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejercicio2/ejer2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejercicio2/ejercicio3/ejer3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejercicio2/ejercicio3/ejer3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejercicio2/ejercicio3/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/ejercicio2/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tarea obligatoria UD1/Q1AngelBlat1/SolucionQ1/ejercicio1/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VariablesLocal/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VariablesLocal/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VariablesLocal/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Tema3/Triplicar numero de array con map/index.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3KgPMzzBAR1a7WeFwN8wrTx3QqV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.index.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "javascript.preferred.runtime.type.id": "node",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Angel\Documents\Daw 26-27 (2on)\client\Tema 4\Gestor de Tareas" />
+      <recent name="C:\Users\Angel\Documents\Daw 26-27 (2on)\client\Tema 3" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.10315.144" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5357971c-f5f7-4d2f-a139-1bce8a4a329f" name="Changes" comment="" />
+      <created>1791976193474</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1791976193474</updated>
+      <workItem from="1791976194545" duration="2845000" />
+      <workItem from="1792047066646" duration="7672000" />
+      <workItem from="1792056756502" duration="3228000" />
+      <workItem from="1792138798575" duration="54000" />
+      <workItem from="1792138948315" duration="292000" />
+      <workItem from="1792139253259" duration="2000" />
+      <workItem from="1792139288288" duration="68000" />
+      <workItem from="1792139365928" duration="4792000" />
+      <workItem from="1792477877682" duration="2649000" />
+      <workItem from="1792580436910" duration="2848000" />
+      <workItem from="1792610132256" duration="2667000" />
+      <workItem from="1792651679277" duration="50000" />
+      <workItem from="1792656980205" duration="2043000" />
+      <workItem from="1792659042687" duration="18000" />
+      <workItem from="1792659071661" duration="17000" />
+      <workItem from="1792659099250" duration="71000" />
+      <workItem from="1792659180905" duration="3741000" />
+      <workItem from="1792699352369" duration="4377000" />
+      <workItem from="1792743709822" duration="2262000" />
+      <workItem from="1792748108761" duration="2772000" />
+      <workItem from="1793187075946" duration="5140000" />
+      <workItem from="1793265454731" duration="2545000" />
+      <workItem from="1793352289115" duration="139000" />
+      <workItem from="1793357600779" duration="3784000" />
+      <workItem from="1793791780740" duration="5117000" />
+      <workItem from="1793871697998" duration="929000" />
+      <workItem from="1793874626876" duration="3728000" />
+      <workItem from="1793956886014" duration="6653000" />
+      <workItem from="1794220639748" duration="8000" />
+      <workItem from="1794429221840" duration="9743000" />
+      <workItem from="1794474505635" duration="590000" />
+      <workItem from="1794561703416" duration="2186000" />
+      <workItem from="1794565685568" duration="4265000" />
+      <workItem from="1794901495818" duration="2229000" />
+      <workItem from="1795001275861" duration="5126000" />
+      <workItem from="1795014112587" duration="2689000" />
+      <workItem from="1795026265814" duration="2532000" />
+      <workItem from="1795034490041" duration="3191000" />
+      <workItem from="1795080007851" duration="1094000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de inventario de tienda</title>
+</head>
+<body>
+
+<h1>Gestión de inventario de tienda</h1>
+
+<h3>Datos del producto</h3>
+
+<section>
+    <style>
+        section h3 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <form>
+        <input type="text" id="nombre" autocomplete="off" placeholder="Nombre del producto">
+        <input type="text" id="precio" autocomplete="off" placeholder="Precio en euros">
+        <label for="categoria">Selecciona una categoría</label>
+        <select id="categoria">
+            <option value="Hogar">Hogar</option>
+            <option value="Electronica">Electrónica</option>
+            <option value="Alimentacion">Alimentación</option>
+        </select>
+    </form>
+
+    <h3>Registrar producto</h3>
+
+    <button id="btn-RegistrarProducto">Registrar producto</button>
+
+    <h3>Eliminar por nombre</h3>
+
+    <input type="text" id="nombreEliminar" placeholder="Nombre del producto">
+    <button id="btn-eliminarNombre">Eliminar por nombre</button>
+
+    <h3>Descartar último producto</h3>
+
+    <button id="btn-descartarUltimoProducto">Descartar último producto</button>
+
+    <h3>Filtrar por categoría</h3>
+
+    <label for="categoria">Selecciona una categoría</label>
+    <select id="categoriaFiltrar">
+        <option value="Hogar">Hogar</option>
+        <option value="Electronica">Electrónica</option>
+        <option value="Alimentacion">Alimentación</option>
+    </select>
+
+    <button id="btn-filtrarCategoria">Filtrar</button>
+
+    <p>Actualiza la página para volver a visualizar el inventario completo o pulsa el boton ⬇️.</p>
+    <button class="btn-mostrarInventario">Mostrar inventario completo</button>
+
+    <h3>Filtrar por precio</h3>
+
+    <input type="number" id="precioFiltrar">
+
+    <button id="btn-filtrarPrecio">Filtrar</button>
+
+    <p>Actualiza la página para volver a visualizar el inventario completo o pulsa el boton ⬇️.</p>
+    <button class="btn-mostrarInventario">Mostrar inventario completo</button>
+
+    <h3>Visualizar inventario</h3>
+
+    <ul id="listaInventario">
+
+    </ul>
+
+    <p id="totalInventario"></p>
+
+
+</section>
+
+<script>
+
+    let inputNombre = document.getElementById('nombre');
+    let inputPrecio = document.getElementById('precio');
+    const selectCategoria = document.getElementById('categoria');
+    const selectCategoriaFiltrar = document.getElementById('categoriaFiltrar');
+    const btnRegistrarProducto = document.getElementById('btn-RegistrarProducto');
+    let parrafoTotalInventario = document.getElementById('totalInventario');
+    const inputNombreEliminar = document.getElementById('nombreEliminar');
+    const btnEliminarNombre = document.getElementById('btn-eliminarNombre');
+    const btnDescartarUltimoProducto = document.getElementById('btn-descartarUltimoProducto');
+    const btnFiltrarCategoria = document.getElementById('btn-filtrarCategoria');
+    const btnMostrarInventario = document.querySelector('.btn-mostrarInventario');
+    const listaInventario = document.getElementById('listaInventario');
+
+    function Producto (nombre, categoria, precio){
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.mostrarProducto = function() {
+            return `Producto: ${this.nombre} | Categoría: ${this.categoria} | Precio: ${this.precio}`;
+        };
+    }
+
+    const clave = 'inventarioLocal';
+    let inventario = [];
+
+    function obtenerInventario(){
+        const inventarioString = localStorage.getItem(clave);
+        if (inventarioString) {
+            const inventarioPlano = JSON.parse(inventarioString);
+            return inventarioPlano.map(producto => new Producto(producto.nombre, producto.categoria,
+                producto.precio));
+        }
+        return [];
+    }
+
+    function mostrarInventario (inventario){
+        listaInventario.innerHTML= "";
+
+        inventario.forEach(function(producto){
+            const li = document.createElement("li");
+            li.textContent = producto.mostrarProducto();
+            listaInventario.appendChild(li);
+        })
+        totalInventario(inventario);
+    }
+
+    function actualizarInventarioLocal (array){
+        localStorage.setItem(clave, JSON.stringify(array));
+    }
+
+    function anyadirProducto () {
+        const nombre = inputNombre.value.trim();
+        const precio = inputPrecio.value.trim();
+        const categoria = selectCategoria.value;
+
+        if (!nombre || !precio || !categoria) {
+            alert("Por favor, rellena todos los campos.");
+            return;
+        }
+
+        const productoNuevo = new Producto(nombre, categoria, precio);
+        inventario.push(productoNuevo);
+        actualizarInventarioLocal(inventario);
+        mostrarInventario(inventario);
+
+        inputNombre.value = "";
+        inputPrecio.value = "";
+    }
+
+    function borrarPorNombre() {
+        const nombreEliminar = inputNombreEliminar.value.trim();
+
+        if (!nombreEliminar){
+            alert("Introduce el nombre del producto a eliminar")
+            return;
+        }
+
+        inventario = inventario.filter(producto => producto.nombre !== nombreEliminar);
+
+        actualizarInventarioLocal(inventario);
+        mostrarInventario(inventario);
+    }
+
+    function totalInventario (inventario) {
+        const total = inventario.reduce((acumulador, producto) => acumulador = acumulador + Number(producto.precio), 0);
+
+        parrafoTotalInventario.innerHTML=`<strong>El total del valor del inventario es: ${total.toFixed(2)}€</strong>`;
+    }
+
+    function filtrarCategoria () {
+        inventario = obtenerInventario();
+        let categoriaFiltrar = selectCategoriaFiltrar.value;
+
+        const inventarioFiltrado = inventario.filter(producto => producto.categoria==categoriaFiltrar);
+        mostrarInventario(inventarioFiltrado);
+    }
+
+    function filtrarPrecio () {
+        inventario = obtenerInventario();
+        let precioFiltrar = selectPrecioFiltrar.value;
+
+        const inventarioFiltrado = inventario.filter(producto => producto.precio>=precioFiltrar);
+        mostrarInventario(inventarioFiltrado);
+    }
+
+    btnRegistrarProducto.addEventListener("click", anyadirProducto);
+    btnEliminarNombre.addEventListener("click", borrarPorNombre);
+    btnDescartarUltimoProducto.addEventListener("click", () => {
+        inventario.pop();
+        actualizarInventarioLocal(inventario);
+        mostrarInventario(inventario);
+    });
+    btnFiltrarCategoria.addEventListener("click", filtrarCategoria)
+    btnMostrarInventario.addEventListener("click",()=> mostrarInventario(inventario))
+
+    mostrarInventario(obtenerInventario());
+
+</script>
+
+</body>
+</html>

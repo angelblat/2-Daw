@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AutoTrack - Encuentra el coche que te mueve</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#1e3a34', /* Dark forest green seen in original design */
+              950: '#132824',
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom iOS & Layout Styles -->
+<style data-purpose="custom-layout">
+    /* Native iOS smooth scrolling and touch enhancements */
+    body {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<!-- END: Custom iOS & Layout Styles -->
+</head>
+<body class="min-h-full font-sans text-slate-900 bg-white antialiased flex flex-col justify-between">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs" data-purpose="mobile-header">
+<div class="px-4 py-3 flex items-center justify-between">
+<!-- Logo Branding -->
+<a aria-label="AutoTrack Inicio" class="flex items-center gap-2" href="#">
+<div class="w-8 h-8 rounded-lg bg-emerald-800 text-white flex items-center justify-center shadow-sm">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"></path>
+<circle cx="7.5" cy="14.5" r="1.5"></circle>
+<circle cx="16.5" cy="14.5" r="1.5"></circle>
+</svg>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900">Auto<span class="text-emerald-800">Track</span></span>
+</a>
+<!-- Quick Action Icons -->
+<div class="flex items-center gap-2">
+<button aria-label="Buscar" class="p-2 text-slate-600 hover:text-slate-900 active:scale-95 transition-transform">
+<svg class="w-5 h-5 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<button aria-label="Favoritos" class="p-2 text-slate-600 hover:text-slate-900 active:scale-95 transition-transform">
+<svg class="w-5 h-5 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<a class="ml-1 bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow-sm transition-colors active:scale-95" href="#vender">
+          Publicar
+        </a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main class="flex-grow">
+<!-- BEGIN: HeroSection -->
+<section class="px-4 pt-6 pb-6 bg-gradient-to-b from-slate-50 via-white to-white" data-purpose="hero-section">
+<!-- Tag / Sub-header badge -->
+<span class="inline-block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+        Coches de Ocasión y Km 0
+      </span>
+<!-- Primary Headline -->
+<h1 class="text-3xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+        Encuentra el coche <br/><span class="text-emerald-800">que te mueve</span>
+</h1>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed max-w-sm">
+        Miles de coches de segunda mano y nuevos, al mejor precio. Compra o vende de forma segura y sencilla.
+      </p>
+<!-- Visual Car Feature Banner -->
+<div class="relative mt-5 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-xs" data-purpose="hero-image-card">
+<div class="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[11px] font-medium text-emerald-800 border border-emerald-100 flex items-center gap-1 shadow-2xs">
+<span>Tu próximo coche</span>
+<svg class="w-3.5 h-3.5 text-emerald-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<!-- Cropped view of hero car from reference -->
+<img alt="Coche destacado de ocasión AutoTrack" class="w-full h-44 object-cover object-[80%_12%] scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpo-1QVpyCOROybupbF_jWE1fn8OtOeJErYG0yB6YcWlAbRNkzoE1EDRsu05Xh-bUdaIktRm3Wdima7hzgba3kT_OELWlXNZJB-Rw96cd3rzo0QxXjDgeJEhYoCpEDKn_KijsDfw8VKIGjyAy4IMnMC9pXALP1uhAuLi8iBCRVhbU0d5VSDhuDo2sogMrZYusKcp5svEPr7MQETfSiE-Ygq3MdP2IcH9rbzP6oGlkqzOLIGHS4nVQL1g"/>
+</div>
+<!-- Quick Search Widget -->
+<div class="mt-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm" data-purpose="search-box">
+<form class="space-y-3" onsubmit="event.preventDefault()">
+<!-- Brand Selector -->
+<div>
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Marca</label>
+<div class="relative">
+<select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 font-medium focus:ring-2 focus:ring-emerald-700 focus:border-transparent outline-none appearance-none">
+<option selected="">Todas</option>
+<option>SEAT</option>
+<option>Volkswagen</option>
+<option>BMW</option>
+<option>Audi</option>
+<option>Mercedes-Benz</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+<!-- Model Selector -->
+<div>
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Modelo</label>
+<div class="relative">
+<select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 font-medium focus:ring-2 focus:ring-emerald-700 focus:border-transparent outline-none appearance-none">
+<option selected="">Todos</option>
+<option>Ibiza</option>
+<option>León</option>
+<option>T-Roc</option>
+<option>Serie 1</option>
+<option>Q3</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+<!-- Max Price Selector -->
+<div>
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Precio máximo</label>
+<div class="relative">
+<select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 font-medium focus:ring-2 focus:ring-emerald-700 focus:border-transparent outline-none appearance-none">
+<option selected="">Sin límite</option>
+<option>10.000 €</option>
+<option>15.000 €</option>
+<option>20.000 €</option>
+<option>30.000 €</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full mt-2 bg-emerald-800 hover:bg-emerald-900 active:scale-[0.98] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all" type="submit">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><path d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            Buscar vehículos
+          </button>
+</form>
+</div>
+<!-- Trust Badges List -->
+<div class="mt-4 grid grid-cols-3 gap-2 text-center pt-2 border-t border-slate-100">
+<div class="flex flex-col items-center gap-1">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="text-[11px] font-medium text-slate-600">Revisados</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.215-9.13A2.25 2.25 0 0 0 16.5 7.5h-3.75V4.125C12.75 3.504 12.246 3 11.625 3H3.375C2.754 3 2.25 3.504 2.25 4.125v10.125" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="text-[11px] font-medium text-slate-600">A domicilio</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75m-2.18-7.502a1.8 1.8 0 0 0-1.64 0l-7 3.5A1.8 1.8 0 0 0 3 12.356c0 5.485 3.784 8.718 8.647 9.605a1.8 1.8 0 0 0 .706 0C17.216 21.074 21 17.84 21 12.356a1.8 1.8 0 0 0-1.18-1.604l-7-3.5Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="text-[11px] font-medium text-slate-600">Garantía</span>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FeaturedCarsSection -->
+<section class="py-6 bg-slate-50 border-y border-slate-200/60" data-purpose="featured-cars">
+<div class="px-4 flex items-end justify-between mb-4">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Destacados</span>
+<h2 class="text-xl font-bold text-slate-900 leading-tight">Coches en venta</h2>
+</div>
+<a class="text-xs font-semibold text-emerald-800 flex items-center gap-1 hover:underline" href="#">
+          Ver todos <span aria-hidden="true">→</span>
+</a>
+</div>
+<!-- Horizontal scroll container for iOS swipe experience -->
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-2 hide-scrollbar">
+<!-- Car Card 1: Seat Ibiza -->
+<article class="flex-none w-[82vw] max-w-xs snap-start bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="relative h-44 bg-slate-100 overflow-hidden">
+<span class="absolute top-2.5 left-2.5 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                Destacado
+              </span>
+<button class="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-red-500 shadow-2xs">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<img alt="SEAT Ibiza 1.0 TSI" class="w-full h-full object-cover object-[15%_35%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCydTudhAl5CS8vkO9RLdjRefdN7mNptUrR7JKRiRxY_RAR1qfCFNBfnIFXZ9GQN1qJUgwHDFk3HXaEHyShtq0YSa165pvmSRgCIPRrDXXoRhp1nbxvTvQ-dATXR7s9d-yv-DDJIhkbUDb16VD29ZfGdbCR9KmELub58KD4-__lqASa_KZHPjxrsDzmqPjjzMr05Cw6en_l_GOJHAgUpwyp5wWChCQQmMpY72sgVodByCvMncl58xL6tg"/>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-base text-slate-900 leading-snug">SEAT Ibiza</h3>
+<p class="text-xs text-slate-500 font-medium">1.0 TSI 95cv Style</p>
+<div class="mt-3 grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">
+<div class="flex items-center gap-1.5"><span class="text-slate-400">📅</span> 2021</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⏱️</span> 45.000 km</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⛽</span> Gasolina</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⚙️</span> Manual</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-lg font-extrabold text-slate-900">12.900 €</span>
+<a class="bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-xs font-semibold px-3 py-1.5 rounded-lg inline-flex items-center gap-1 transition-colors" href="#">
+              Ver detalle →
+            </a>
+</div>
+</article>
+<!-- Car Card 2: VW T-Roc -->
+<article class="flex-none w-[82vw] max-w-xs snap-start bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="relative h-44 bg-slate-100 overflow-hidden">
+<button class="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-red-500 shadow-2xs">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<img alt="Volkswagen T-Roc 1.5 TSI" class="w-full h-full object-cover object-[38%_35%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdYLNM94JchHqpM1TvsHzwEvNY6htBwkGai9Hfx_CDIL9fxWYDnwm35Wg0HBjuYHzEyjOC_2TMZOPH-LdfriZ1ruDt_tfHPs9uAnShKYGWVgrubxyygRJiK5sNY7eCUlrw0GMFmCSI_Endtvpt67iSOHsyfyWUA4E1ciZQFANjhj__8mUzd3XdugDRk1q75DGpjiyS8l8ZYEZzL-gss7FngSyjTqjTZeMpAUCDPylsZiyKiea3WSHxbg"/>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-base text-slate-900 leading-snug">Volkswagen T-Roc</h3>
+<p class="text-xs text-slate-500 font-medium">1.5 TSI 150cv Advance</p>
+<div class="mt-3 grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">
+<div class="flex items-center gap-1.5"><span class="text-slate-400">📅</span> 2022</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⏱️</span> 32.000 km</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⛽</span> Gasolina</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⚙️</span> Manual</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-lg font-extrabold text-slate-900">22.500 €</span>
+<a class="bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-xs font-semibold px-3 py-1.5 rounded-lg inline-flex items-center gap-1 transition-colors" href="#">
+              Ver detalle →
+            </a>
+</div>
+</article>
+<!-- Car Card 3: BMW Serie 1 -->
+<article class="flex-none w-[82vw] max-w-xs snap-start bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="relative h-44 bg-slate-100 overflow-hidden">
+<button class="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-red-500 shadow-2xs">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<img alt="BMW Serie 1 118d" class="w-full h-full object-cover object-[62%_35%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTXMAEXzPIDmn6NWkmHW6X4Ibl0vaAD0MoiayjdkuDfmFg3y63mXaXqFkbP93_-FS3mCKhf3HOfUEOgzFue66DXr-0IwVX8r-T0IKUS4a8tBVIr4iE9qnsQTyeQh4UXV8iW6V4Iz7crlK0z9KG7YapOc8HHmtzSzOcC0EsSj742JtVfRKhIdNH-dkdrLHBYLd7l7TLcYumbIyMFU2cmEmkyqjZFfkrCaOrcDfRsjU-6SKgW1XpXjbxGA"/>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-base text-slate-900 leading-snug">BMW Serie 1</h3>
+<p class="text-xs text-slate-500 font-medium">118d Business</p>
+<div class="mt-3 grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">
+<div class="flex items-center gap-1.5"><span class="text-slate-400">📅</span> 2020</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⏱️</span> 68.000 km</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⛽</span> Diésel</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⚙️</span> Manual</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-lg font-extrabold text-slate-900">18.900 €</span>
+<a class="bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-xs font-semibold px-3 py-1.5 rounded-lg inline-flex items-center gap-1 transition-colors" href="#">
+              Ver detalle →
+            </a>
+</div>
+</article>
+<!-- Car Card 4: Audi Q3 -->
+<article class="flex-none w-[82vw] max-w-xs snap-start bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="relative h-44 bg-slate-100 overflow-hidden">
+<button class="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-slate-600 hover:text-red-500 shadow-2xs">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<img alt="Audi Q3 35 TFSI" class="w-full h-full object-cover object-[85%_35%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf-qiv6VvS-Cf8pyAV9GfDx4HyYEaUPEUertLbNA_YXI1JnH6fo01E8IBdeo6RDS3ZCId6XT9-pQQW-OVeW2dHPmRsqYrnFL521zYcwD0iwhkPg_d4iJlgi3FBF1kv4-YVInf2KEz58mWxwcr0ySx8vyS4mIhcFmRDmon99Q2oHtLWK1W9lnxUW-uX1UyNgnf-uH4MtsjnmXaSUWna8e_eP-M89IF7kusqOzpAB0MQILmF-zF_aVXw-w"/>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-base text-slate-900 leading-snug">Audi Q3</h3>
+<p class="text-xs text-slate-500 font-medium">35 TFSI Advanced</p>
+<div class="mt-3 grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">
+<div class="flex items-center gap-1.5"><span class="text-slate-400">📅</span> 2021</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⏱️</span> 54.000 km</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⛽</span> Gasolina</div>
+<div class="flex items-center gap-1.5"><span class="text-slate-400">⚙️</span> Automático</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-lg font-extrabold text-slate-900">28.900 €</span>
+<a class="bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-xs font-semibold px-3 py-1.5 rounded-lg inline-flex items-center gap-1 transition-colors" href="#">
+              Ver detalle →
+            </a>
+</div>
+</article>
+</div>
+</section>
+<!-- END: FeaturedCarsSection -->
+<!-- BEGIN: CategoriesSection -->
+<section class="py-7 px-4 bg-white" data-purpose="categories-section">
+<div class="flex items-end justify-between mb-4">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Busca por categoría</span>
+<h2 class="text-xl font-bold text-slate-900 leading-tight">¿Qué tipo de coche buscas?</h2>
+</div>
+<a class="text-xs font-semibold text-emerald-800 whitespace-nowrap hover:underline" href="#">
+          Ver todos →
+        </a>
+</div>
+<!-- Categories 2x3 Grid for Mobile -->
+<div class="grid grid-cols-3 gap-2.5">
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M5 11l1.5-4.5h11L19 11M3 15v-3l2-6c.3-.8 1-1.3 1.9-1.3h10.2c.9 0 1.6.5 1.9 1.3l2 6v3h-1.5a1.5 1.5 0 0 0-3 0h-7a1.5 1.5 0 0 0-3 0H3z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">Utilitarios</span>
+</a>
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M4 14l1.5-5.5h13L20 14M2 17v-4l2-6.5C4.3 5.5 5 5 6 5h12c1 0 1.7.5 2 1.5l2 6.5v4h-1.5a1.5 1.5 0 0 0-3 0h-9a1.5 1.5 0 0 0-3 0H2z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">Compactos</span>
+</a>
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M4 12l1-4h14l1 4M3 15v-4l1.2-4.8C4.5 5.5 5.2 5 6 5h12c.8 0 1.5.5 1.8 1.2L21 11v4h-2a1.5 1.5 0 0 0-3 0H8a1.5 1.5 0 0 0-3 0H3z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">SUV / 4x4</span>
+</a>
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M4 11l2.5-4h11l2.5 4M2 14v-4l3-5.5c.3-.6 1-.9 1.7-.9h10.6c.7 0 1.4.3 1.7.9l3 5.5v4h-2a1.5 1.5 0 0 0-3 0H7a1.5 1.5 0 0 0-3 0H2z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">Berlinas</span>
+</a>
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M3 6h12v7h5l2 3v3h-2a1.5 1.5 0 0 1-3 0H7a1.5 1.5 0 0 1-3 0H2V7c0-.6.4-1 1-1zm1 2v3h10V8H4z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">Furgonetas</span>
+</a>
+<!-- Category Card -->
+<a class="p-3 bg-slate-50 hover:bg-emerald-50/50 border border-slate-200/80 rounded-xl flex flex-col items-center text-center transition-colors" href="#">
+<div class="w-10 h-7 flex items-center justify-center text-emerald-800 mb-1">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24"><path d="M5 12l3-5h9l2 5M2 14v-3l4-6c.3-.6.9-1 1.6-1h8.8c.7 0 1.3.4 1.6 1l4 6v3h-2a1.5 1.5 0 0 0-3 0H7a1.5 1.5 0 0 0-3 0H2z"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-800">Deportivos</span>
+</a>
+</div>
+</section>
+<!-- END: CategoriesSection -->
+<!-- BEGIN: TrustPillarsSection -->
+<section class="py-6 px-4 bg-slate-50 border-t border-slate-200" data-purpose="trust-pillars">
+<div class="grid grid-cols-2 gap-3">
+<!-- Pillar 1 -->
+<div class="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mb-2.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75m-2.18-7.502a1.8 1.8 0 0 0-1.64 0l-7 3.5A1.8 1.8 0 0 0 3 12.356c0 5.485 3.784 8.718 8.647 9.605a1.8 1.8 0 0 0 .706 0C17.216 21.074 21 17.84 21 12.356a1.8 1.8 0 0 0-1.18-1.604l-7-3.5Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-slate-900 leading-tight">Transparencia total</h4>
+<p class="text-[11px] text-slate-500 mt-1 leading-normal">Historial verificado y datos claros sin sorpresas.</p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mb-2.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-slate-900 leading-tight">Compra segura</h4>
+<p class="text-[11px] text-slate-500 mt-1 leading-normal">Pagos protegidos y garantía incluida en todos.</p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mb-2.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 2.25 18Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-slate-900 leading-tight">Financiación fácil</h4>
+<p class="text-[11px] text-slate-500 mt-1 leading-normal">Condiciones a tu medida con las mejores tasas.</p>
+</div>
+<!-- Pillar 4 -->
+<div class="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mb-2.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h4 class="font-bold text-xs text-slate-900 leading-tight">Atención 1 a 1</h4>
+<p class="text-[11px] text-slate-500 mt-1 leading-normal">Te guiamos en cada paso de la compra o venta.</p>
+</div>
+</div>
+</section>
+<!-- END: TrustPillarsSection -->
+<!-- BEGIN: HowItWorksSection -->
+<section class="py-7 px-4 bg-white" data-purpose="how-it-works">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Sencillo y rápido</span>
+<h2 class="text-xl font-bold text-slate-900 mb-5">Así de fácil</h2>
+<!-- Vertical Steps for Clean Mobile Hierarchy -->
+<div class="space-y-4">
+<!-- Step 1 -->
+<div class="flex items-start gap-3.5">
+<div class="w-7 h-7 rounded-full bg-emerald-800 text-white font-bold text-xs flex items-center justify-center shrink-0">1</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Busca tu coche</h4>
+<p class="text-xs text-slate-600 mt-0.5">Filtra por marca, modelo, precio y encuentra el ideal sin moverte de casa.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-3.5">
+<div class="w-7 h-7 rounded-full bg-emerald-800 text-white font-bold text-xs flex items-center justify-center shrink-0">2</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Contacta con el vendedor</h4>
+<p class="text-xs text-slate-600 mt-0.5">Haz una consulta directa, agenda una prueba de conducción o resérvalo online.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-3.5">
+<div class="w-7 h-7 rounded-full bg-emerald-800 text-white font-bold text-xs flex items-center justify-center shrink-0">3</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Disfruta de tu coche</h4>
+<p class="text-xs text-slate-600 mt-0.5">Revisa la documentación con nuestro aval, formaliza el pago seguro y ¡estrena coche!</p>
+</div>
+</div>
+</div>
+<!-- Seller Banner CTA -->
+<div class="mt-6 relative rounded-2xl overflow-hidden bg-slate-900 text-white p-5 shadow-md" id="vender">
+<!-- Visual car background overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img alt="Vende tu coche" class="w-full h-full object-cover object-[85%_88%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTt-mDLs-7hBeq2OgT2EZuTy-5xtJRWPSwaX0xJXOMy41xOX0COt5JuTqW1lVEZTrWR0bo6a1YQeMb9GZWyq_yijXBfYoVWkT7la1-7TKBSXUmeeufzZVCl_8sCmNwRHXOZoQDJ-7YlV-dIs2PpU15wblSACvYbcVxK2bBm9o2qZI8YFpYq2DQ6Tk0inEDvZMXB1pJ1Ggyd9V5kLMUdZ29JFpxgrj7zyPjunfvHGJAZ1J-iyalUGMTig"/>
+</div>
+<div class="relative z-10">
+<span class="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-1">Vende tu coche</span>
+<h3 class="text-lg font-bold leading-snug">Publica tu anuncio en minutos</h3>
+<p class="text-xs text-slate-300 mt-1 max-w-[85%]">Llega a miles de compradores interesados de forma rápida, transparente y segura.</p>
+<div class="mt-4">
+<button class="bg-white text-slate-900 hover:bg-slate-100 font-bold text-xs px-4 py-2.5 rounded-xl shadow-sm transition active:scale-95">
+              Publicar anuncio
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HowItWorksSection -->
+</main>
+<!-- BEGIN: MobileFooter -->
+<footer class="bg-slate-950 text-slate-400 text-xs pt-8 pb-10 px-5 border-t border-slate-800" data-purpose="mobile-footer">
+<div class="flex flex-col gap-6">
+<!-- Brand & Info -->
+<div>
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"></path>
+</svg>
+</div>
+<span class="text-lg font-extrabold text-white">AutoTrack</span>
+</div>
+<p class="mt-2 text-xs text-slate-400">Coches que te llevan más lejos.</p>
+</div>
+<!-- Links Grid -->
+<div class="grid grid-cols-2 gap-6 pt-2 border-t border-slate-900">
+<div>
+<h5 class="text-[11px] font-bold text-slate-200 uppercase tracking-wider mb-2.5">Enlaces</h5>
+<ul class="space-y-2">
+<li><a class="hover:text-white transition" href="#">Comprar</a></li>
+<li><a class="hover:text-white transition" href="#">Vender</a></li>
+<li><a class="hover:text-white transition" href="#">Financiación</a></li>
+<li><a class="hover:text-white transition" href="#">Nosotros</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[11px] font-bold text-slate-200 uppercase tracking-wider mb-2.5">Ayuda</h5>
+<ul class="space-y-2">
+<li><a class="hover:text-white transition" href="#">Preguntas frecuentes</a></li>
+<li><a class="hover:text-white transition" href="#">Contacto</a></li>
+<li><a class="hover:text-white transition" href="#">Términos y condiciones</a></li>
+<li><a class="hover:text-white transition" href="#">Privacidad</a></li>
+</ul>
+</div>
+</div>
+<!-- Social & Copyright -->
+<div class="pt-4 border-t border-slate-900 flex flex-col items-center gap-3">
+<div class="flex items-center gap-5 text-slate-400">
+<a aria-label="Instagram" class="hover:text-white" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a aria-label="Facebook" class="hover:text-white" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.688 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"></path></svg>
+</a>
+<a aria-label="YouTube" class="hover:text-white" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+</a>
+</div>
+<p class="text-[11px] text-slate-500 text-center">© 2025 AutoTrack. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<!-- END: MobileFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="card-interactions">
+    // Add touch micro-interaction on car cards
+    document.addEventListener('DOMContentLoaded', () => {
+      const favButtons = document.querySelectorAll('button[aria-label="Favoritos"], article button');
+      favButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          btn.classList.toggle('text-red-500');
+          btn.classList.toggle('text-slate-600');
+        });
+      });
+    });
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

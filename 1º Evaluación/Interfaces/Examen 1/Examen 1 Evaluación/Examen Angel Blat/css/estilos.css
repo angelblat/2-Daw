@@ -1,0 +1,163 @@
+:root{
+    margin: 0;
+    min-width: 100vw;
+    background-image: url("../imagenes/imagen-fondo-caribe.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100vh;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 196, 0);
+    width: 100vw;
+    margin-top: 0;
+}
+
+header>div{
+    display: flex;
+    flex-direction: row;
+}
+
+.head1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    max-height: 5rem;
+    margin-left: 2rem;
+}
+
+.head2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.head1 > ul{
+    display: flex;
+    flex-direction: row;
+    margin: (0px, 2rem, 2rem, 0px);
+}
+
+.listaSuperior{
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-right: 3rem;
+}
+
+.head1 > ul > li{
+    display: flex;
+    flex-direction: row;
+    /*border: solid rgb(237, 241, 12) 1px;*/
+    margin-right: 1rem;
+
+
+    
+}
+.head2 > nav > ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+    gap: 2rem;
+    
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.principal{
+    background-color: rgb(0, 0, 0, 0.6);
+    display: grid;
+    grid-template-areas: 
+    "titulo"
+    "listaVuelos"
+    "listaVuelos2"
+    "formularios"
+    "opcionesAvanzadas"
+    "search";
+    padding: 0.5rem;
+
+}
+
+
+.titulo{
+    grid-area: titulo;
+}
+
+h1{
+    font-size: 24px;
+    color: beige;
+}
+
+.listaVuelos{
+    grid-area: listaVuelos;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.listaVuelos2{
+    grid-area: listaVuelos2;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.listaVuelos2 li{
+    padding: 0.5rem;
+    background-color: rgba(126, 94, 94, 0.6);
+      align-items: center;
+    justify-content: center;
+
+}
+
+.listaVuelos li{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background-color: rgba(126, 94, 94, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.formularios{
+    grid-area: formularios;
+}
+
+.listaVuelos li:hover{
+    background-color: rgb(55, 91, 177);
+}
+
+.listaVuelos2 li:hover{
+    background-color: rgb(55, 91, 177);
+}
+
+.search{
+    grid-area: search;
+}

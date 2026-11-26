@@ -1,0 +1,91 @@
+<div class="container">
+    <!-- Barra de Balance Superior -->
+    <div class="balance-bar">
+        <div class="balance-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+            Balance Total del Taller
+        </div>
+        <div class="balance-amount">0.00€</div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="main-content">
+        <!-- Sección Registro de Entrada -->
+        <div class="form-section">
+            <h2>Registro de Entrada</h2>
+            <form>
+
+                <!-- Propietario -->
+                <div class="form-group">
+                    <label for="propietario">Propietario</label>
+                    <input type="text" id="propietario" class="form-control" placeholder="Nombre completo">
+                    <div id="error-propietario" class="error-message" hidden></div>
+                </div>
+
+                <!-- Matrícula -->
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula" class="form-control" placeholder="1234ABC">
+                    <div id="error-matricula" class="error-message" hidden></div>
+                </div>
+
+                <!-- Marca -->
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <select id="marca" class="form-control" style="color: #757575;">
+                        <option value="" disabled selected>Selecciona la marca...</option>
+                        <option value="seat">Seat</option>
+                        <option value="renault">Renault</option>
+                        <option value="peugeot">Peugeot</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    <div id="error-marca" class="error-message" hidden></div>
+                </div>
+
+                <!-- Campo dinámico: Especificar Marca (Oculto por defecto) -->
+                <div id="grupo-otra-marca" class="form-group" hidden>
+                    <label for="otra-marca">Especifica la marca</label>
+                    <input type="text" id="otra-marca" class="form-control" placeholder="Escribe la marca del coche">
+                    <div id="error-otra-marca" class="error-message" hidden></div>
+                </div>
+
+                <!-- Incidencias -->
+                <div class="form-group">
+                    <label>Incidencias Detectadas</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="motor"> Motor</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="ruedas"> Ruedas</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="general"> General</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="frenos"> Frenos</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="carroceria"> Carrocería</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="otros" id="otrasIncidencias"> Otros...</label>
+                    </div>
+                    <div id="error-incidencias" class="error-message" hidden></div>
+                </div>
+
+                <!-- Campo dinámico: Detalles de Otros (Oculto por defecto) -->
+                <div id="grupo-detalles-otros" class="form-group" hidden>
+                    <label for="detalles-otros">Detalles de "Otros"</label>
+                    <textarea id="detalles-otros" class="form-control" placeholder="Describe las otras incidencias aquí..."></textarea>
+                    <div id="error-detalles-otros" class="error-message" hidden></div>
+                </div>
+
+                <!-- Mensaje de Éxito General (Oculto por defecto) -->
+                <div id="mensaje-exito" style="color: #2e7d32; font-size: 14px; font-weight: bold; margin-bottom: 15px; text-align: center;" hidden></div>
+
+                <button type="submit" class="btn-submit">Registrar y Calcular</button>
+            </form>
+        </div>
+
+        <!-- Sección Coches en Espera -->
+        <div class="queue-section">
+            <div class="queue-header">
+                <h2>Coches en espera</h2>
+                <span class="badge-count">0</span>
+            </div>
+            <div class="empty-message">
+                No hay vehículos registrados.
+            </div>
+        </div>
+    </div>
+</div>p

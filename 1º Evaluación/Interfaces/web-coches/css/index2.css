@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecera{
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+@media (max-width: 768px) {
+  .cabecera {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .navegacion {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .acciones {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.contenedor-pie{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.pie-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

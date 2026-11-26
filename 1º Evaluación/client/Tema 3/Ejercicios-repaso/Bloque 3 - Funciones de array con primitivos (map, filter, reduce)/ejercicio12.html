@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 12: Acumulación de valores con reduce
+    </title>
+</head>
+<body>
+<script>
+    const precios = [12.50, 4.00, 19.99, 8.50];
+    const costeTotal = precios.reduce((acc, precio) => acc + precio, 0);
+    console.log(costeTotal.toFixed(2));
+</script>
+</body>
+</html>

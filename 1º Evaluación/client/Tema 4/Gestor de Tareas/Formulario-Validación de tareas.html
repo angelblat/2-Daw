@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            max-width: 750px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h1, h2 {
+            color: #1e293b;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .campo {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .grupo-inline {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.4rem;
+        }
+
+        .grupo-inline label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.65rem 1.2rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-peligro {
+            background-color: #dc2626;
+        }
+
+        .btn-peligro:hover {
+            background-color: #b91c1c;
+        }
+
+        .btn-secundario {
+            background-color: #475569;
+        }
+
+        .btn-secundario:hover {
+            background-color: #334155;
+        }
+
+        .controles-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        #listaTareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Clase opcional por si quieres dar estilo a cada <li> que crees desde JS */
+        .tarea-item {
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #94a3b8;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            background-color: #f8fafc;
+        }
+
+        .tarea-item.prioritaria {
+            border-left-color: #dc2626;
+            background-color: #fef2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Gestor de Tareas</h1>
+
+<section>
+    <h2>Nueva Tarea</h2>
+    <form id="formularioTareas">
+        <div class="campo">
+            <label for="titulo">Título de la tarea:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Ej: Revisar informe mensual">
+        </div>
+
+        <div class="campo">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="3" placeholder="Detalles de la tarea..."></textarea>
+        </div>
+
+        <div class="campo">
+            <label for="persona">Asignar a:</label>
+            <select id="persona" name="persona">
+                <option value="">-- Selecciona una persona --</option>
+                <option value="Ana">Ana</option>
+                <option value="Carlos">Carlos</option>
+                <option value="Elena">Elena</option>
+                <option value="Marcos">Marcos</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>¿Es prioritaria?</label>
+            <div class="grupo-inline">
+                <label>
+                    <input type="radio" name="prioritario" value="si"> Sí
+                </label>
+                <label>
+                    <input type="radio" name="prioritario" value="no" checked> No
+                </label>
+            </div>
+        </div>
+
+        <div class="campo">
+            <div class="grupo-inline">
+                <label>
+                    <input type="checkbox" id="completada" name="completada"> Marcar como completada inicialmente
+                </label>
+            </div>
+        </div>
+
+        <button type="submit">Añadir Tarea</button>
+    </form>
+</section>
+
+<section>
+    <h2>Lista de Tareas</h2>
+
+    <div class="controles-lista">
+        <button type="button" id="btnFiltrarPrioritarias">Ver solo prioritarias</button>
+        <button type="button" id="btnVerTodas" class="btn-secundario">Ver todas</button>
+        <button type="button" id="btnEliminarPorTitulo" class="btn-peligro">Eliminar por título</button>
+    </div>
+
+    <ul id="listaTareas"></ul>
+</section>
+
+<script>
+    const formularioTareas = document.getElementById("formularioTareas");
+    const ulListaTareas = document.getElementById("listaTareas");
+
+    const CLAVE_LS = "lista_tareas";
+    let listaTareas = [];
+    // =========================================================
+    // Código auxiliar para recuperar los datos del Local Storage
+    // =========================================================
+
+    class Tarea {
+        constructor(titulo, descripcion, persona, prioritaria) {
+            this.titulo = titulo;
+            this.descripcion = descripcion;
+            this.persona = persona;
+            this.prioritaria = prioritaria;
+        }
+    }
+
+    function revivirObjetoCiudad(arrayObj) {
+        return arrayObj.map(tarea =>
+            new Tarea(
+                tarea.titulo,
+                String(tarea.descripcion),
+                String(tarea.persona),
+                String(tarea.prioritaria),
+            )
+        );
+    }
+
+    function cargarArrayDeLocalStorage() {
+        try {
+            const ciudadesCadena = localStorage.getItem(CLAVE_LS);
+            if (!ciudadesCadena) return [];
+            const parsed = JSON.parse(ciudadesCadena);
+            return revivirObjetoCiudad(parsed);
+        } catch {
+            return [];
+        }
+    }
+
+    function actualizarArrayLocal (array){
+        localStorage.setItem(CLAVE_LS, JSON.stringify(array));
+    }
+
+    function renderizarArray (array) {
+        ulListaTareas.innerHTML = "";
+        document.getElementById("mensajeVacio")?.remove();
+
+        if (array.length === 0) {
+            ulListaTareas.insertAdjacentHTML(
+                "afterend",
+                '<p id="mensajeVacio">No hay tareas registradas.</p>'
+            );
+            return;
+        }
+
+        // 3. Recorremos el array y creamos cada <li>
+        array.forEach((tarea) => {
+            const li = document.createElement("li");
+
+            // Añadimos la clase base y, si es prioritaria, también la clase "prioritaria"
+            li.classList.add("tarea-item");
+            if (tarea.prioritario) {
+                li.classList.add("prioritaria");
+            }
+
+            // Rellenamos el contenido del <li>
+            li.innerHTML = `
+              <strong>${tarea.titulo}</strong> - <span>Asignada a: ${tarea.persona}</span>
+              <p>${tarea.descripcion}</p>
+              <small>Prioritaria: ${tarea.prioritario ? "Sí" : "No"}</small>
+            `;
+
+            ulListaTareas.appendChild(li);
+        });
+    }
+
+    formularioTareas.addEventListener("submit", validarCampos);
+
+    function validarCampos(event) {
+        event.preventDefault();
+        const data = new FormData(formularioTareas);
+        let errores = [];
+
+        const titulo = data.get("titulo")
+        if (titulo === "") {
+            errores.push("título");
+        }
+
+        const descripcion = data.get("descripcion")
+        if (descripcion === "") {
+            errores.push("descripcion");
+        }
+
+        const personaSeleccionada = data.get("persona");
+        if (personaSeleccionada === "") {
+            errores.push("seleccionar persona")
+        }
+
+        const prioritario = data.get("prioritario");
+        if (prioritario === "si") {
+            console.log("es prioritario")
+        } else {
+            console.log("no es prioritario")
+        }
+
+        if (errores.length > 0) {
+            alert(`Errores en: ${errores.join(" ,")}.`)
+        } else {
+            listaTareas = cargarArrayDeLocalStorage();
+            listaTareas.push(new Tarea(titulo, descripcion, personaSeleccionada, prioritario));
+            actualizarArrayLocal(listaTareas);
+            renderizarArray(listaTareas);
+        }
+    }
+
+
+</script>
+</body>
+</html>

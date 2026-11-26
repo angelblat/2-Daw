@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtrar inventario</title>
+</head>
+<body>
+
+<script>
+
+    // stock positivo y precio menor a 50 euros
+
+    const inventario = [
+        { nombre: "Teclado Mecánico", precio: 59.99, stock: 5 },
+        { nombre: "Ratón óptico", precio: 25.00, stock: 50 },
+        { nombre: "Monitor 24 pulgadas", precio: 149.00, stock: 125 }
+    ];
+
+    const inventarioFormateado = inventario.filter(producto => producto.precio < 50 && producto.stock>0);
+
+    console.log(inventarioFormateado);
+</script>
+
+</body>
+</html>

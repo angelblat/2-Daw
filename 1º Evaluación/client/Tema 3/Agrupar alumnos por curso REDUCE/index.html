@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agrupar alumnos con Reduce</title>
+</head>
+<body>
+<script>
+    const estudiantes = [
+        {
+            nombre: "Santiago",
+            curso: "2º DAW"},
+        {
+            nombre: "Pedro",
+            curso: "2º DAW"},
+        {
+            nombre: "Francisco",
+            curso: "1º DAW"},
+        {
+            nombre: "ayuso",
+            curso: "2º DAW"},
+        {
+            nombre: "ayuso",
+            curso: "1º DAW"}
+    ]
+
+    // comprobar que existe la clave, crearla, añadir estudiante
+
+    const estudiantesForm = estudiantes.reduce((acumulador, estudiante)=> {
+        const {curso, nombre} = estudiante;
+        acumulador[curso] = acumulador[curso] || [];
+
+        acumulador[curso].push(estudiante.nombre);
+        return acumulador;
+        },{})
+
+    /*
+    var estuReduce = estudiantesDaw.reduce(function (acu, estudiantesDaw) {
+
+   const curso = estudiantesDaw.curso
+
+    if (!acu[curso]) {
+        acu[curso] = [];
+    }
+
+    acu[curso].push(estudiantesDaw.nombre);
+
+    return acu;
+
+}, {});
+     */
+
+    console.log(estudiantesForm);
+</script>
+</body>
+</html>

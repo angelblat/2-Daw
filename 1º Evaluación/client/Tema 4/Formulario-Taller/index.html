@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Taller</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar Balance */
+        .balance-bar {
+            background-color: #1a73e8;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .balance-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .balance-amount {
+            font-size: 20px;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Form Section */
+        .form-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #202124;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #202124;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-control:focus {
+            border-color: #1a73e8;
+        }
+
+        /* Checkboxes Grid */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            border: 1px solid #dadce0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Estilos para Mensajes de Error */
+        .error-message {
+            color: #d93025;
+            font-size: 12px;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .btn-submit {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1557b0;
+        }
+
+        /* Queue Section */
+        .queue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .queue-header h2 {
+            font-size: 24px;
+            color: #202124;
+        }
+
+        .badge-count {
+            background-color: #1a73e8;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .empty-message {
+            color: #70757a;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        /* Clase utilitaria para ocultar elementos (necesaria para tus campos dinámicos) */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Contenedor de la lista */
+        .cars-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Tarjeta individual de cada vehículo */
+        .car-card {
+            background-color: #ffffff;
+            border: 1px solid #dadce0;
+            border-left: 5px solid #1a73e8; /* Borde izquierdo destacado */
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .car-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .car-plate {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .car-brand {
+            font-weight: bold;
+            color: #202124;
+            font-size: 15px;
+        }
+
+        .car-owner {
+            font-size: 13px;
+            color: #5f6368;
+            margin-bottom: 10px;
+        }
+
+        .car-issues {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .issue-tag {
+            background-color: #f1f3f4;
+            color: #3c4043;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .car-notes {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #5f6368;
+            background-color: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Barra de Balance Superior -->
+    <div class="balance-bar">
+        <div class="balance-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+            Balance Total del Taller
+        </div>
+        <div class="balance-amount">0.00€</div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="main-content">
+        <!-- Sección Registro de Entrada -->
+        <div class="form-section">
+            <h2>Registro de Entrada</h2>
+            <form id="form-content">
+
+                <!-- Propietario -->
+                <div class="form-group">
+                    <label for="propietario">Propietario</label>
+                    <input type="text" id="propietario" name="propietario" class="form-control" placeholder="Nombre completo">                    <div id="error-propietario" class="error-message" hidden></div>
+                </div>
+
+                <!-- Matrícula -->
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula" name="matricula" class="form-control" placeholder="1234ABC">
+                    <div id="error-matricula" class="error-message" hidden></div>
+                </div>
+
+                <!-- Marca -->
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <select id="marca" name="marca" class="form-control" style="color: #757575;">
+                        <option value="" disabled selected>Selecciona la marca...</option>
+                        <option value="seat">Seat</option>
+                        <option value="renault">Renault</option>
+                        <option value="peugeot">Peugeot</option>
+                        <option value="otro">Otro</option>
+                    </select> <!-- El select se cierra AQUÍ, después de todas las opciones -->
+                    <div id="error-marca" class="error-message" hidden></div>
+                </div>
+
+                <!-- Campo dinámico: Especificar Marca (Oculto por defecto) -->
+                <div id="grupo-otra-marca" class="form-group" hidden>
+                    <label for="otra-marca">Especifica la marca</label>
+                    <input type="text" id="otra-marca" name="otra-marca" class="form-control" placeholder="Escribe la marca del coche">
+                    <div id="error-otra-marca" class="error-message" hidden></div>
+                </div>
+
+                <!-- Incidencias -->
+                <div class="form-group">
+                    <label>Incidencias Detectadas</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="motor"> Motor</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="ruedas"> Ruedas</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="general"> General</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="frenos"> Frenos</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="carroceria"> Carrocería</label>
+                        <label class="checkbox-item"><input type="checkbox" name="incidencias" value="otros" id="otrasIncidencias"> Otros...</label>
+                    </div>
+                    <div id="error-incidencias" class="error-message" hidden></div>
+                </div>
+
+                <!-- Campo dinámico: Detalles de Otros (Oculto por defecto) -->
+                <div id="grupo-detalles-otros" class="form-group" hidden>
+                    <label for="detalles-otros">Detalles de "Otros"</label>
+                    <textarea id="detalles-otros" name="detalles-otros" class="form-control" placeholder="Describe las otras incidencias aquí..."></textarea>
+                    <div id="error-detalles-otros" class="error-message" hidden></div>
+                </div>
+
+                <!-- Mensaje de Éxito General (Oculto por defecto) -->
+                <div id="mensaje-exito" style="color: #2e7d32; font-size: 14px; font-weight: bold; margin-bottom: 15px; text-align: center;" hidden></div>
+
+                <button type="submit" class="btn-submit">Registrar y Calcular</button>
+            </form>
+        </div>
+
+        <div>
+            <div>
+                <h2>Coches en espera</h2>
+                <span class="badge-count">0</span>
+            </div>
+            <div class="empty-message">
+                No hay vehículos registrados.
+            </div>
+            <div id="lista-coches" class="cars-list"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const formularioTaller = document.getElementById('form-content');
+    const formMarca = document.getElementById("marca");
+    const grupoOtraMarca = document.getElementById("grupo-otra-marca");
+    const mensajeGeneral = document.getElementById("mensaje-exito");
+    const checkboxOtros = document.getElementById("otrasIncidencias");
+    const grupoDetallesOtros = document.getElementById("grupo-detalles-otros");
+    const contenedor = document.getElementById("lista-coches");
+    const contadorCoches = document.getElementsByClassName('badge-count');
+
+    let listaCoches = [];
+
+    // PUNTO 2
+
+    //
+
+    const CLAVE_STORAGE = 'cochesTaller';
+    listaCoches = obtenerInventario();
+    mostrarInventario(listaCoches);
+
+    // Obtener inventario
+
+    function obtenerInventario() {
+        const cochesString = localStorage.getItem(CLAVE_STORAGE);
+
+        return cochesString ? JSON.parse(cochesString) : [];
+
+    }
+
+    // Mostrar inventario
+
+    function mostrarInventario (inventario){
+
+        contenedor.innerHTML = '';
+
+        const fecha = new Date;
+        const fechaActual = fecha.toLocaleDateString();
+
+        inventario.forEach(function(coche){
+            contenedor.innerHTML += `
+        <div class="car-card">
+            <div class="car-card-header">
+                <span class="car-plate">Matricula: ${coche.matricula}</span>
+                <span class="car-brand">Marca: ${coche.marca}</span>
+            </div>
+            <div class="car-date">
+                <strong>Fecha actual: </strong><span>${fechaActual}</span>
+            </div>
+            <div class="car-owner">
+                <strong>Propietario:</strong> ${coche.propietario}
+            </div>
+            <div class="car-issues">
+                Incidencia:${coche.incidencias.map(incidencia => `<span class="issue-tag">${incidencia}</span>`).join('')}
+            </div>
+            ${coche.detallesOtros ? `<div class="car-notes">Detalles: ${coche.detallesOtros}</div>` : ''}
+      <div class="car-cost">
+        <strong>Coste:</strong> ${calcularPresupuesto(inventario)} €
+      </div>
+        </div>`;})
+
+        // Actualizar contador coches y quito el texto No hay vehiculos registrados
+
+        if (listaCoches.length > 0){
+            contadorCoches[0].textContent = listaCoches.length;
+            document.querySelector(".empty-message").textContent = "";
+
+        }
+    }
+
+    // Actualizar inventario
+
+    function actualizarInventarioLocal (array){
+        localStorage.setItem(CLAVE_STORAGE, JSON.stringify(array));
+    }
+
+    // Mostrar o esconder otras marcas
+
+    formMarca.addEventListener("change", function (event){
+        if (event.target.value === 'otro'){
+            grupoOtraMarca.hidden = false;
+        } else {
+            grupoOtraMarca.hidden = true;
+        }
+    })
+
+    // Mostrar o esconder otras incidencias
+
+    checkboxOtros.addEventListener("change", otrasMarcasChecked);
+
+    function otrasMarcasChecked (event) {
+        grupoDetallesOtros.hidden = !event.target.checked;
+    }
+
+    formularioTaller.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const data = new FormData(formularioTaller);
+
+        // Cuando el formulario se envia, tiene errores pasa a ser negativo
+
+        let tieneErrores = false;
+
+        // Se captura en un array todos los selectores con error-message
+
+        const divsError = formularioTaller.querySelectorAll('.error-message');
+
+        // Al enviar el formulario, se limpian todos los errores usando el array de errores divsError
+
+        divsError.forEach(div => {
+            div.textContent = '';
+            div.hidden = true;
+        });
+
+        mensajeGeneral.textContent = '';
+
+        // Pasamos el id del div específico para mostrar el error para mostrarlo
+        // y el mensaje de error que se mostrará
+
+        function setErrorMsg(idDelDiv, texto) {
+            const divError = document.getElementById(idDelDiv);
+            if (divError) {
+                divError.textContent = texto;
+                divError.hidden = false;
+            }
+            tieneErrores = true;
+        }
+
+        // Validamos todos los campos
+
+        const propietario = data.get('propietario');
+        if (!propietario || propietario.trim() === '') {
+            setErrorMsg('error-propietario', 'Debes introducir el nombre del propietario');
+        }
+
+        const matricula = data.get('matricula');
+        if (!matricula || matricula.trim() === '') {
+            setErrorMsg('error-matricula', 'Debes introducir una matricula');
+        }
+
+        const marca = data.get('marca');
+        if (!marca) {
+            setErrorMsg('error-marca', 'Debes seleccionar una marca');
+        }
+
+        if (marca === 'otro') {
+            const otraMarcaTexto = data.get('otra-marca');
+            if (!otraMarcaTexto || otraMarcaTexto.trim() === '') {
+                setErrorMsg('error-otra-marca', 'Debes especificar la marca del vehículo');
+            }
+        }
+
+        const incidenciasSeleccionadas = data.getAll('incidencias');
+
+        if (incidenciasSeleccionadas.length === 0) {
+            setErrorMsg('error-incidencias', 'Debes seleccionar al menos una incidencia');
+        }
+
+        if (incidenciasSeleccionadas.includes("otros")) {
+            const detallesOtrosTexto = data.get('detalles-otros');
+            if (!detallesOtrosTexto || detallesOtrosTexto.trim() === '') {
+                setErrorMsg('error-detalles-otros', 'Debes describir las otras incidencias aquí...');
+            }
+        }
+
+        if (tieneErrores === false) {
+
+            const marcaFinal = marca === "otro" ? data.get('otra-marca') : marca;
+            const detallesFinal = incidenciasSeleccionadas.includes('otros') ? data.get('detalles-otros') : '';
+
+            const coche = {
+                propietario: propietario,
+                matricula: matricula,
+                marca: marcaFinal,
+                incidencias: incidenciasSeleccionadas,
+                detallesOtros: detallesFinal
+            };
+
+            listaCoches.push(coche);
+            actualizarInventarioLocal(listaCoches)
+            mostrarInventario(listaCoches)
+
+            if (listaCoches.length > 0){
+                contadorCoches[0].textContent = listaCoches.length;
+            }
+
+            console.log(listaCoches)
+
+            formularioTaller.reset();
+            grupoOtraMarca.hidden = true;
+            grupoDetallesOtros.hidden = true;
+        }
+    })
+
+    // Fase 3
+
+    function calcularPresupuesto(inventario) {
+        const CONFIG = {
+            IVA: 21,
+            MANO_OBRA_HORA: 45,
+            TARIFAS: {
+                "Motor": { pieza: 120, tiempo: 3 },
+                "Frenos": { pieza: 60, tiempo: 1.5 },
+                "Ruedas": { pieza: 200, tiempo: 1 },
+                "Carroceria": { pieza: 150, tiempo: 4 },
+                "General": { pieza: 0, tiempo: 2 },
+                "otros": { pieza: 50, tiempo: 1 }
+            }
+        }
+
+        inventario.forEach(function(coche) {
+            coche.forEach(coche.incidencias)
+        })
+
+
+
+    }
+
+
+</script>
+</body>
+</html>

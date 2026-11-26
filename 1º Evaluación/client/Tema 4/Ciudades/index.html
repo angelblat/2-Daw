@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen DWEC 1ª Evaluación</title>
+</head>
+
+<body>
+
+<h1>Información de ciudades</h1>
+
+<form id="formCiudades">
+
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" name="ciudad" id="ciudad" placeholder="Nombre de la ciudad">
+    <br>
+    <label for="cp"> Código Postal:</label>
+    <input type="text" name="cp" id="cp" placeholder="Código postal">
+    <br>
+    <label for="habitantes"> Habitantes:</label>
+    <input type="text" name="habitantes" id="habitantes" placeholder="Número de habitantes">
+    <br>
+
+    <button type="submit">Añadir Ciudad</button>
+</form>
+<h2>Listado de ciudades:</h2>
+<ul id="listaCiudades"></ul>
+<div id="estadísticas"></div>
+<script>
+    const formularioCiudades = document.getElementById("formCiudades");
+    const listaCiudades = document.getElementById("listaCiudades");
+    const estadisticasContainer = document.getElementById("estadísticas");
+
+    const CLAVE_LS = "ciudades_dwec";
+    // =========================================================
+    // Código auxiliar para recuperar los datos del Local Storage
+    // =========================================================
+
+    function revivirObjetoCiudad(arrayObj) {
+        return arrayObj.map(elemento =>
+            new Ciudad(
+                elemento.ciudad,
+                String(elemento.cp),
+                Number(elemento.habitantes)
+            )
+        );
+    }
+
+    function cargarDeLocalStorage() {
+        try {
+            const ciudadesCadena = localStorage.getItem(CLAVE_LS);
+            if (!ciudadesCadena) return [];
+            const parsed = JSON.parse(ciudadesCadena);
+            return revivirObjetoCiudad(parsed);
+        } catch {
+            return [];
+        }
+    }
+
+    function actualizarInventarioLocal (array){
+        localStorage.setItem(CLAVE_LS, JSON.stringify(array));
+        renderizarInventario(array);
+    }
+
+    function renderizarInventario (array){
+
+        listaCiudades.innerHTML = "";
+        document.getElementById("mensajeVacio")?.remove();
+
+        if (array.length === 0){
+            listaCiudades.insertAdjacentHTML("afterend", '<p id="mensajeVacio">No hay ciudades en el array.</p>')
+        } else {
+            listaCiudades.innerHTML = "";
+            array.forEach(ciudad => {
+                const li = document.createElement("li");
+
+                li.textContent = `${ciudad.mostrarInformacion() }`;
+
+                listaCiudades.appendChild(li);
+            });
+            calcularEstadisticas(array);
+        }
+    }
+
+    class Ciudad {
+        constructor(ciudad, cp, habitantes){
+            this.ciudad = ciudad;
+            this.cp = cp;
+            this.habitantes = habitantes;
+        }
+
+        mostrarInformacion(){
+            return `${this.ciudad} (${this.cp}) - ${this.habitantes} habitantes`
+        }
+    }
+
+    class EstadisticasCiudades {
+        constructor(totalCiudades, totalHabitantes, ciudadMasGrande, ciudadMenosHabitantes, promedioHabitantes) {
+            this.totalCiudades = Number(totalCiudades);
+            this.totalHabitantes = Number(totalHabitantes);
+            this.ciudadMasGrande = String(ciudadMasGrande);
+            this.ciudadMenosHabitantes = String(ciudadMenosHabitantes);
+            this.promedioHabitantes = Number(promedioHabitantes);
+        }
+    }
+
+
+    // =========================================================
+    // Ejemplo de uso de la función de carga
+    // =========================================================
+
+    let ciudades = cargarDeLocalStorage();
+    renderizarInventario(ciudades);
+    // localStorage.removeItem(CLAVE_LS);
+    // =========================================================
+    //  Tu solución aquí
+    //  ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+    // ==========================================================
+
+    formularioCiudades.addEventListener("submit", validarCampos);
+
+    function validarCampos (event) {
+        event.preventDefault();
+
+        const data = new FormData(formularioCiudades);
+
+        let errores = [];
+
+        const ciudad = data.get("ciudad")
+        if (ciudad === ""){
+            errores.push("Ciudad");
+        }
+
+        const regexCP = /^[1-9]\d{4}$/;
+        const cp = data.get("cp")
+        if (!cp.match(regexCP)){
+            errores.push("Codigo postal")
+        }
+
+        const regexH = /^[1-9]\d*$/;
+        const habitantes = data.get("habitantes");
+        if (!habitantes.match(regexH)){
+            errores.push("Habitantes")
+        }
+
+        if (errores.length > 0){
+            alert(`Hay errores en los campos: ${errores.join(" ,")}`)
+        } else {
+            document.getElementById("mensajeFormulario")?.remove();
+            formularioCiudades.insertAdjacentHTML("afterend", '<p id="mensajeFormulario">El formulario es correcto</p>');
+            let ciudadAnyadir = new Ciudad(ciudad, cp, Number(habitantes));
+            ciudades = cargarDeLocalStorage();
+            ciudades.push(ciudadAnyadir);
+            renderizarInventario(ciudades);
+            actualizarInventarioLocal(ciudades);
+        }
+    }
+
+    // Ejercicio 2
+
+    function calcularEstadisticas(array) {
+
+        const totalCiudades = array.length;
+        const totalHabitantes = array.reduce((acc, ciudad) => ciudad.habitantes + acc, 0);
+        const ciudadMayorNumeroHabitantes = array.reduce((acc, ciudad) => {
+            return ciudad.habitantes > acc.habitantes ? ciudad : acc;
+        }, array[0]);
+        const ciudadMenorNumeroHabitantes = array.reduce((acc, ciudad) => {
+            return ciudad.habitantes < acc.habitantes ? ciudad : acc;
+        }, array[0]);
+        const promedioHabitantes = totalHabitantes / array.length;
+        const estadisticas = new EstadisticasCiudades(totalCiudades, totalHabitantes, ciudadMayorNumeroHabitantes,
+        ciudadMenorNumeroHabitantes, promedioHabitantes);
+        estadisticasContainer.innerHTML = `
+          <h2>Estadísticas de las ciudades.</h2>
+          <p>Total de ciudades: ${estadisticas.totalCiudades}</p>
+          <p>Total de habitantes: ${estadisticas.totalHabitantes}</p>
+          <p>Ciudad con más habitantes: ${estadisticas.ciudadMasGrande.ciudad}</p>
+          <p>Ciudad con menos habitantes: ${estadisticas.ciudadMenosHabitantes.ciudad}</p>
+          <p>Promedio de habitantes: ${estadisticas.promedioHabitantes.toFixed(2)}</p>
+          <button class="btnFiltrar" >¿Quieres filtrar por número de habitantes?</button>
+        `;
+
+    }
+
+    btnFiltrarNumeroHabitantes = document.getElementsByClassName("btnFiltrar");
+
+    try {
+        btnFiltrarNumeroHabitantes[0].addEventListener("click", filtrarNumeroHabitantes);
+    } catch (e){
+        console.log("El boton de filtrar habitantes esta desactivado por que no hay ciudades. ")
+    }
+
+
+    function filtrarNumeroHabitantes () {
+        const min = ciudades.reduce((acc, ciudad) => {
+            return ciudad.habitantes < acc ? ciudad.habitantes : acc
+        }, ciudades[0].habitantes);
+
+        const max = ciudades.reduce((acc, ciudad) => {
+            return ciudad.habitantes > acc ? ciudad.habitantes : acc
+        }, ciudades[0].habitantes);
+
+        btnFiltrarNumeroHabitantes[0].insertAdjacentHTML(
+            "afterend",
+            `<br><input type="number" id="inputHabitantes" min="${min}" max="${max}" value="${min}"step="250">`
+        );
+
+        const inputHabitantes = document.getElementById("inputHabitantes");
+
+        inputHabitantes.addEventListener("input", (evento) => {
+            document.querySelectorAll(".ciudadFiltrada").forEach(elemento => elemento.remove());
+
+            const valorActual = Number(evento.target.value);
+            const ciudadesFiltradas = ciudades.filter(ciudad => ciudad.habitantes >= valorActual);
+            inputHabitantes.insertAdjacentHTML("afterend", ciudadesFiltradas.map(ciudad => `<p class="ciudadFiltrada">Ciudad: ${ciudad.ciudad}</p>`).join(""));
+        })
+    }
+
+    formularioCiudades.insertAdjacentHTML("afterend", `<button id="btnEliminarCiudad" type="submit">Eliminar ciudad</button>`);
+
+    const btnEliminar = document.getElementById("btnEliminarCiudad");
+    btnEliminar.addEventListener("click", eliminarCiudad);
+
+    function eliminarCiudad(){
+        let nuevoArray = cargarDeLocalStorage();
+        if (nuevoArray.length === 0){
+            alert("No hay ninguna ciudad registrada.")
+        } else {
+            const ciudadEliminar = prompt("Escriba el nombre de una ciudad existente a eliminar.")
+            if (nuevoArray.filter(ciudad => ciudad.ciudad.toUpperCase() === ciudadEliminar.trim().toUpperCase()).length > 0){
+                nuevoArray = nuevoArray.filter(ciudad => ciudad.ciudad.toUpperCase() !== ciudadEliminar.trim().toUpperCase());
+                actualizarInventarioLocal(nuevoArray);
+            } else {
+                console.log("No coincide")
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

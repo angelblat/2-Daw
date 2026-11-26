@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/*Grid por areas.*/
+.principal{
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "izquierda central derecha";
+    
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    border: 1px solid black;
+    min-height: 100dvh;
+    
+}
+
+header{
+    grid-area: header;
+}
+
+aside{
+    grid-area: izquierda;
+}
+
+main{
+    grid-area: central;
+}
+
+.derecha{
+    grid-area: derecha;
+}

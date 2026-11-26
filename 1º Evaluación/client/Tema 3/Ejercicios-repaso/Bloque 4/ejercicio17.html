@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 17: Filtrado de lista de objetos con filter
+    </title>
+</head>
+<body>
+<script>
+    const inventario = [
+        { producto: "Impresora", stock: 0 },
+        { producto: "Pantalla", stock: 12 },
+        { producto: "Cable HDMI", stock: 45 },
+        { producto: "Adaptador", stock: 0 }
+    ];
+
+    const inventarioStockPositivo = inventario.filter(producto => producto.stock > 0);
+    console.log(inventarioStockPositivo);
+</script>
+</body>
+</html>

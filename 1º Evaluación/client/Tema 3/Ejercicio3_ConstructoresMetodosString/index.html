@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Biblioteca</title>
+</head>
+<body>
+
+<h1>Gestión de Biblioteca</h1>
+
+<form>
+    <h2>Registrar Nuevo Libro</h2>
+
+    <div>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo">
+    </div>
+
+    <div>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" name="autor">
+    </div>
+
+    <div>
+        <label for="anio">Año:</label>
+        <input type="text" id="anio" name="anio">
+    </div>
+
+    <div>
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" name="genero">
+    </div>
+
+    <div>
+        <label for="genero">Nombre del libro a borrar:</label>
+        <input type="text" id="nombreBorrar" name="genero">
+    </div>
+
+    <button id="btn-Agregar" type="button">Agregar a la Biblioteca</button>
+    <button id="btn-Mostrar" type="button">Mostrar la Biblioteca</button>
+    <button id="btn-Eliminar" type="button">Eliminar un libro de la Biblioteca</button>
+
+</form>
+
+
+<h2>Libros en la Biblioteca</h2>
+
+<ul id="lista">
+    <li>
+        "Cien años de soledad" de Gabriel García Márquez (1967) - Género: Realismo mágico
+        <button type="button">Eliminar</button>
+    </li>
+</ul>
+<script src="index.js"></script>
+</body>
+</html>

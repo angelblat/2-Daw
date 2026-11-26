@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos de alumno</title>
+</head>
+<body>
+<h1>Datos recogidos del formulario</h1>
+<p th:text="'Nombre :' + ${alumnoOk.nombre}" />
+<p th:text="'Apellidos :' + ${alumnoOk.apellidos}" />
+<p th:text="'Edad :' + ${alumnoOk.edad}" />
+<a href="/">Volver a la pantalla inicial</a>
+</body>
+</html>

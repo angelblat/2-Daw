@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 15: Búsqueda del primer elemento con find
+    </title>
+</head>
+<body>
+
+<script>
+    const libros = [
+        { titulo: "El Quijote", disponible: false },
+        { titulo: "Cien años de soledad", disponible: true },
+        { titulo: "1984", disponible: true }
+    ];
+
+    const libroCoincide = libros.find(libro => libro.disponible===true);
+    console.log(libroCoincide)
+</script>
+</body>
+</html>

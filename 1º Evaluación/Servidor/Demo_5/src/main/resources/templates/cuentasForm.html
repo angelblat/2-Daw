@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${add} ? 'Nueva Cuenta' : 'Editar Cuenta'"></title>
+</head>
+<body>
+<div>
+    <h2 th:text="${add} ? 'Agregar cuenta a ' + ${clienteDTO.nombre} : 'Editar cuenta de ' + ${clienteDTO.nombre}"></h2>
+
+    <form th:action="@{/clientes/{idCliente}/cuentas/save(idCliente=${clienteDTO.id})}" th:object="${cuentaDTO}" method="POST">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <table>
+            <tr>
+                <td>Banco:</td>
+                <td><input type="text" th:field="*{banco}" required /></td>
+            </tr>
+            <tr>
+                <td>Sucursal:</td>
+                <td><input type="text" th:field="*{sucursal}" required /></td>
+            </tr>
+            <tr>
+                <td>Dígito de Control (DC):</td>
+                <td><input type="text" th:field="*{dc}" required /></td>
+            </tr>
+            <tr>
+                <td>Número de Cuenta:</td>
+                <td><input type="text" th:field="*{numeroCuenta}" required /></td>
+            </tr>
+            <tr>
+                <td>Saldo inicial:</td>
+                <td><input type="number" step="0.01" th:field="*{saldoCuenta}" required /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" th:value="${add} ? 'Crear Cuenta' : 'Guardar Cambios'" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<br>
+<div>
+    <a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${clienteDTO.id})}">Cancelar y volver</a>
+</div>
+</body>
+</html>

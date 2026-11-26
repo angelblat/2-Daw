@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prisma · Revista digital</title>
+    <!-- NO MODIFIQUES ESTE ARCHIVO -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layoutResuelto.css">
+</head>
+<body>
+-
+    <!-- ===================== CABECERA ===================== -->
+    <header class="cabecera">
+        <a class="logo" href="#">Prisma<span>.</span></a>
+
+        <nav class="menu">
+            <ul class="menu__lista">
+                <li><a href="#">Ciencia</a></li>
+                <li><a href="#">Tecnología</a></li>
+                <li><a href="#">Cultura</a></li>
+                <li><a href="#">Opinión</a></li>
+            </ul>
+        </nav>
+
+        <a class="boton boton--suscribir" href="#boletin">Suscríbete</a>
+    </header>
+
+    <!-- ===================== PORTADA ===================== -->
+    <section class="portada">
+        <span class="portada__seccion">Reportaje de la semana</span>
+        <h1 class="portada__titulo">El océano que Europa esconde bajo el hielo</h1>
+        <p class="portada__entradilla">Bajo kilómetros de hielo, una de las lunas de Júpiter guarda más agua que todos los mares de la Tierra. Viajamos con el equipo que quiere asomarse a ella.</p>
+        <p class="portada__autor">Por Lucía Ferrán · 12 min de lectura</p>
+        <a class="boton boton--grande" href="#">Leer el reportaje</a>
+    </section>
+
+    <!-- ===================== CONTENIDO ===================== -->
+    <main class="revista">
+
+        <!-- ---------- DESTACADOS ---------- -->
+        <section class="destacadas">
+            <h2 class="seccion__titulo">Destacados</h2>
+
+            <div class="destacadas__rejilla">
+                <article class="noticia noticia--principal">
+                    <img src="img/noticia-1.svg" alt="">
+                    <span class="etiqueta">Tecnología</span>
+                    <h3 class="noticia__titulo">Así funcionan los chips que imitan al cerebro humano</h3>
+                    <p class="noticia__resumen">Consumen mil veces menos energía que un procesador tradicional y ya se prueban en coches, drones y audífonos. Te explicamos cómo aprenden sin necesidad de conectarse a la nube.</p>
+                    <p class="noticia__meta">Mario Celda · 9 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-2.svg" alt="">
+                    <span class="etiqueta">Cultura</span>
+                    <h3 class="noticia__titulo">La última librería de barrio que abre 24 horas</h3>
+                    <p class="noticia__meta">Ana Robles · 5 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-3.svg" alt="">
+                    <span class="etiqueta">Ciencia</span>
+                    <h3 class="noticia__titulo">Plantas que avisan de la sequía</h3>
+                    <p class="noticia__meta">Iker Sanz · 4 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ---------- ÚLTIMAS NOTICIAS ---------- -->
+        <section class="ultimas">
+            <h2 class="seccion__titulo">Últimas noticias</h2>
+
+            <div class="noticias">
+                <article class="noticia">
+                    <img src="img/noticia-4.svg" alt="">
+                    <span class="etiqueta">Opinión</span>
+                    <h3 class="noticia__titulo">Desconectar también es un derecho</h3>
+                    <p class="noticia__meta">Nuria Vidal · 3 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-5.svg" alt="">
+                    <span class="etiqueta">Cultura</span>
+                    <h3 class="noticia__titulo">El festival de cine que se proyecta en las fachadas de un pueblo entero durante una semana de agosto</h3>
+                    <p class="noticia__meta">Pablo Ríos · 6 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-6.svg" alt="">
+                    <span class="etiqueta">Tecnología</span>
+                    <h3 class="noticia__titulo">Contraseñas: el fin está cerca</h3>
+                    <p class="noticia__meta">Sara Gil · 4 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-7.svg" alt="">
+                    <span class="etiqueta">Ciencia</span>
+                    <h3 class="noticia__titulo">¿Por qué olvidamos los sueños?</h3>
+                    <p class="noticia__meta">Iker Sanz · 5 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-8.svg" alt="">
+                    <span class="etiqueta">Ciencia</span>
+                    <h3 class="noticia__titulo">Un mapa del fondo marino, casi completo</h3>
+                    <p class="noticia__meta">Lucía Ferrán · 7 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+
+                <article class="noticia">
+                    <img src="img/noticia-9.svg" alt="">
+                    <span class="etiqueta">Opinión</span>
+                    <h3 class="noticia__titulo">Huertos en las azoteas</h3>
+                    <p class="noticia__meta">Mario Celda · 3 min</p>
+                    <a class="boton" href="#">Leer más</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ---------- LO MÁS LEÍDO ---------- -->
+        <aside class="lateral">
+            <h2 class="lateral__titulo">Lo más leído</h2>
+            <ol class="ranking">
+                <li class="ranking__item">
+                    <span class="ranking__numero">01</span>
+                    <a class="ranking__enlace" href="#">El océano que Europa esconde bajo el hielo</a>
+                </li>
+                <li class="ranking__item">
+                    <span class="ranking__numero">02</span>
+                    <a class="ranking__enlace" href="#">Contraseñas: el fin está cerca</a>
+                </li>
+                <li class="ranking__item">
+                    <span class="ranking__numero">03</span>
+                    <a class="ranking__enlace" href="#">Así funcionan los chips que imitan al cerebro humano</a>
+                </li>
+                <li class="ranking__item">
+                    <span class="ranking__numero">04</span>
+                    <a class="ranking__enlace" href="#">¿Por qué olvidamos los sueños?</a>
+                </li>
+                <li class="ranking__item">
+                    <span class="ranking__numero">05</span>
+                    <a class="ranking__enlace" href="#">Huertos en las azoteas</a>
+                </li>
+            </ol>
+        </aside>
+
+        <!-- ---------- BOLETÍN ---------- -->
+        <section class="boletin" id="boletin">
+            <h2 class="boletin__titulo">Recibe Prisma cada viernes</h2>
+            <p class="boletin__texto">Lo mejor de la semana en tu correo. Sin publicidad y gratis.</p>
+            <form class="boletin__form">
+                <input class="boletin__campo" type="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
+                <button class="boton" type="submit">Suscribirme</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ===================== PIE ===================== -->
+    <footer class="pie">
+        <p>© 2026 Prisma · Revista digital de ciencia y cultura</p>
+        <ul class="pie__enlaces">
+            <li><a href="#">Quiénes somos</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Aviso legal</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>

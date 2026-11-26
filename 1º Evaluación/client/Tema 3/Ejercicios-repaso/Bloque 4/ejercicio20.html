@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 20: Eliminar elementos de un array</title>
+</head>
+<body>
+<script>
+    var plantilla = [
+        { nombre: "Elena", departamento: "IT", salario: 2800 },
+        { nombre: "Pablo", departamento: "Ventas", salario: 2100 },
+        { nombre: "Carmen", departamento: "IT", salario: 3100 },
+        { nombre: "David", departamento: "Marketing", salario: 2400 }
+    ];
+
+    //Eliminar los que cobren menos de 2500
+
+    plantilla = plantilla.filter(persona => persona.salario > 2500);
+
+    console.log(plantilla);
+
+</script>
+</body>
+</html>

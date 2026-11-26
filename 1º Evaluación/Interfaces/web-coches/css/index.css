@@ -1,0 +1,833 @@
+
+/* =========================
+   1. CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --verde: #347968;
+    --verde-oscuro: #245b50;
+    --verde-claro: #eaf3f0;
+    --fondo: #f3f8f6;
+    --texto: #1c2b3e;
+    --texto-secundario: #718197;
+    --borde: #dce5e8;
+    --blanco: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    background: var(--blanco);
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+select {
+    font: inherit;
+}
+
+button,
+a,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.seccion {
+    padding: 45px 5.1%;
+}
+
+.etiqueta {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    color: #526b7a;
+    margin-bottom: 5px;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 27px;
+    letter-spacing: -0.7px;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 19px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.boton-principal {
+    background: var(--verde);
+    color: var(--blanco);
+}
+
+.boton-principal:hover {
+    background: var(--verde-oscuro);
+}
+
+
+/* =========================
+   2. CABECERA
+========================= */
+
+.cabecera {
+    min-height: 60px;
+    padding: 12px 5.1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background: var(--blanco);
+    border-bottom: 1px solid #edf0ef;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo-icono {
+    font-size: 27px;
+}
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.navegacion a {
+    font-size: 12px;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.navegacion a:hover,
+.navegacion a.activo {
+    border-color: var(--verde);
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.acciones > a:not(.boton) {
+    font-size: 23px;
+}
+
+.acciones .boton {
+    padding: 10px 17px;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   3. PORTADA PRINCIPAL
+========================= */
+
+.portada {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 35px;
+    padding: 35px 5.1% 45px;
+    background: var(--fondo);
+}
+
+.portada-contenido h1 {
+    font-size: clamp(32px, 3.5vw, 43px);
+    letter-spacing: -1.6px;
+    line-height: 1.12;
+    margin: 6px 0 12px;
+}
+
+.descripcion {
+    color: var(--texto-secundario);
+    font-size: 14px;
+    max-width: 490px;
+    margin-bottom: 20px;
+}
+
+.buscador {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: var(--blanco);
+}
+
+.filtro {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 5px;
+}
+
+.filtro label {
+    font-size: 10px;
+    color: var(--texto-secundario);
+}
+
+.filtro select {
+    width: 100%;
+    min-width: 0;
+    padding: 7px 8px;
+    border: 1px solid #e4eaec;
+    border-radius: 7px;
+    color: var(--texto);
+    background: var(--blanco);
+    font-size: 11px;
+}
+
+.buscador button {
+    flex-shrink: 0;
+}
+
+.garantias {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+    color: #526878;
+    font-size: 10px;
+}
+
+.portada-imagen {
+    position: relative;
+    min-width: 0;
+}
+
+.portada-imagen img {
+    width: 100%;
+    height: 295px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.mensaje-imagen {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    transform: rotate(-8deg);
+}
+
+
+/* =========================
+   4. ENCABEZADOS DE SECCIÓN
+========================= */
+
+.encabezado-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.enlace-ver {
+    color: var(--verde-oscuro);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.enlace-ver:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   5. TARJETAS DE COCHES
+========================= */
+
+.coches {
+    background: var(--blanco);
+}
+
+.rejilla-coches {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.tarjeta-coche {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: var(--blanco);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-coche:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #1c2b3e12;
+}
+
+.coche-foto {
+    position: relative;
+}
+
+.coche-foto img {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+}
+
+.destacado {
+    position: absolute;
+    bottom: 7px;
+    left: 10px;
+    padding: 3px 9px;
+    background: #72b786;
+    color: var(--blanco);
+    border-radius: 20px;
+    font-size: 9px;
+}
+
+.favorito {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background: var(--blanco);
+    color: var(--texto);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.favorito:hover {
+    color: #c54b57;
+}
+
+.coche-info {
+    padding: 12px;
+}
+
+.coche-info h3 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.modelo {
+    color: var(--texto-secundario);
+    font-size: 11px;
+}
+
+.datos-coche {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 9px 5px;
+    margin: 13px 0 20px;
+    color: #61738a;
+    font-size: 10px;
+}
+
+.datos-coche span {
+    white-space: nowrap;
+}
+
+.precio-coche {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.precio-coche strong {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.precio-coche a {
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: var(--verde-claro);
+    color: var(--verde-oscuro);
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.precio-coche a:hover {
+    background: #d8e9e2;
+}
+
+
+/* =========================
+   6. CATEGORÍAS
+========================= */
+
+.categorias {
+    background: var(--fondo);
+}
+
+.rejilla-categorias {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.tarjeta-categoria {
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--blanco);
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.tarjeta-categoria:hover {
+    border-color: var(--verde);
+    transform: translateY(-2px);
+}
+
+.tarjeta-categoria span {
+    font-size: 30px;
+}
+
+.tarjeta-categoria h3 {
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+/* =========================
+   7. VENTAJAS
+========================= */
+
+.ventajas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 35px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.ventaja-icono {
+    width: 47px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-size: 24px;
+}
+
+.ventaja h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.ventaja p {
+    color: var(--texto-secundario);
+    font-size: 11px;
+    max-width: 240px;
+}
+
+
+/* =========================
+   8. PROCESO Y BANNER
+========================= */
+
+.proceso {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
+    gap: 35px;
+    background: var(--fondo);
+}
+
+.proceso-contenido > h2 {
+    margin-bottom: 20px;
+}
+
+.pasos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.numero {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--blanco);
+    font-weight: bold;
+}
+
+.paso h3 {
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+
+.paso p {
+    color: var(--texto-secundario);
+    font-size: 10px;
+}
+
+.banner-vender {
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    padding: 23px;
+    border-radius: 9px;
+    color: var(--blanco);
+    background:
+        linear-gradient(90deg, #193746ed, #19374630),
+        url("img/banner-vender.jpg") center / cover no-repeat,
+        #456474;
+}
+
+.banner-vender .etiqueta {
+    color: var(--blanco);
+    font-size: 9px;
+}
+
+.banner-vender h2 {
+    font-size: 21px;
+    margin: 7px 0;
+}
+
+.banner-vender p:not(.etiqueta) {
+    max-width: 230px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.boton-claro {
+    background: var(--blanco);
+    color: var(--texto);
+}
+
+.boton-claro:hover {
+    background: var(--verde-claro);
+}
+
+
+/* =========================
+   9. PIE DE PÁGINA
+========================= */
+
+.pie {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr 1fr 0.6fr;
+    gap: 35px;
+    padding: 30px 5.1% 15px;
+    background: #202d33;
+    color: var(--blanco);
+}
+
+.pie .logo {
+    font-size: 19px;
+}
+
+.pie-logo > p {
+    margin-top: 5px;
+    font-size: 10px;
+    color: #c1cbd0;
+}
+
+.pie-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pie-columna h3 {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.pie-columna > a {
+    font-size: 10px;
+    color: #c1cbd0;
+}
+
+.pie-columna > a:hover {
+    color: var(--blanco);
+    text-decoration: underline;
+}
+
+.redes {
+    display: flex;
+    gap: 13px;
+}
+
+.redes a {
+    font-size: 16px;
+}
+
+.copyright {
+    grid-column: 1 / -1;
+    padding-top: 10px;
+    color: #aebbc1;
+    font-size: 9px;
+}
+
+
+/* =========================
+   10. ADAPTACIÓN A TABLETS
+========================= */
+
+@media (max-width: 1050px) {
+
+    .cabecera {
+        flex-wrap: wrap;
+    }
+
+    .navegacion {
+        gap: 15px;
+    }
+
+    .acciones {
+        gap: 10px;
+    }
+
+    .portada {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 20px;
+    }
+
+    .buscador {
+        flex-wrap: wrap;
+    }
+
+    .filtro {
+        flex-basis: 25%;
+    }
+
+    .rejilla-coches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rejilla-categorias {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .proceso {
+        grid-template-columns: 1fr;
+    }
+
+    .banner-vender {
+        min-height: 190px;
+    }
+}
+
+
+/* =========================
+   11. ADAPTACIÓN A MÓVILES
+========================= */
+
+@media (max-width: 650px) {
+
+    .cabecera {
+        padding: 15px 5%;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .navegacion {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        overflow-x: auto;
+    }
+
+    .navegacion a {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .acciones {
+        gap: 10px;
+    }
+
+    .acciones > a:not(.boton) {
+        font-size: 19px;
+    }
+
+    .acciones .boton {
+        padding: 9px 10px;
+        font-size: 10px;
+    }
+
+    .portada {
+        grid-template-columns: 1fr;
+        padding: 30px 5%;
+    }
+
+    .portada-contenido h1 {
+        font-size: 36px;
+    }
+
+    .portada-imagen img {
+        height: 230px;
+    }
+
+    .buscador {
+        gap: 12px;
+    }
+
+    .filtro {
+        flex-basis: 40%;
+    }
+
+    .buscador button {
+        width: 100%;
+    }
+
+    .garantias {
+        justify-content: flex-start;
+        gap: 10px 18px;
+    }
+
+    .seccion {
+        padding: 32px 5%;
+    }
+
+    .encabezado-seccion {
+        align-items: flex-start;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    .enlace-ver {
+        font-size: 10px;
+    }
+
+    .rejilla-coches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .coche-foto img {
+        height: 105px;
+    }
+
+    .coche-info {
+        padding: 9px;
+    }
+
+    .coche-info h3 {
+        font-size: 12px;
+    }
+
+    .datos-coche {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .precio-coche {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .precio-coche strong {
+        font-size: 15px;
+    }
+
+    .rejilla-categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ventajas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px 18px;
+    }
+
+    .pasos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .paso {
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        column-gap: 12px;
+    }
+
+    .paso .numero {
+        grid-row: 1 / 3;
+    }
+
+    .paso h3 {
+        align-self: center;
+    }
+
+    .paso p {
+        grid-column: 2;
+    }
+
+    .pie {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+        padding: 28px 5% 15px;
+    }
+}

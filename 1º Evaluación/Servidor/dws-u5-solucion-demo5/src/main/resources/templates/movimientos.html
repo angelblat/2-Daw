@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimientos</title>
+</head>
+<body>
+<h2 th:text="'Movimientos de la cuenta ' + ${cuentaDTO.numeroCuenta}"></h2>
+<p th:text="'Cliente: ' + ${clienteDTO.nombre} + ' ' + ${clienteDTO.apellidos}"></p>
+<p th:text="'Saldo actual: ' + ${cuentaDTO.saldoActual} + ' €'"></p>
+<p th:if="${listaMovimientosDTO.isEmpty()}">No hay movimientos</p>
+<table border="1" th:if="${!listaMovimientosDTO.isEmpty()}">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>Fecha</td>
+        <td>Tipo</td>
+        <td>Descripción</td>
+        <td>Cuenta origen</td>
+        <td>Cuenta destino</td>
+        <td>Importe</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movimiento : ${listaMovimientosDTO}">
+        <td th:text="${movimiento.id}"></td>
+        <td th:text="${#temporals.format(movimiento.fechaOperacion, 'dd/MM/yyyy')}"></td>
+        <td th:text="${movimiento.tipo}"></td>
+        <td th:text="${movimiento.descripcion}"></td>
+        <td th:text="${movimiento.cuentaOrigenDTO.numeroCuenta}"></td>
+        <td th:text="${movimiento.cuentaDestinoDTO.numeroCuenta}"></td>
+        <td th:text="(${movimiento.cuentaOrigenDTO.id} == ${cuentaDTO.id} ? '-' : '+') + ${movimiento.importe} + ' €'"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a th:href="@{/clientes/{idCliente}/cuentas(idCliente=${clienteDTO.id})}">Volver a las cuentas</a>
+</body>
+</html>

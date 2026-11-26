@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen DWEC 1ª Evaluación</title>
+</head>
+<body>
+
+<h1>Informacion de ciudades</h1>
+
+<form id="formCiudades">
+
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" id="ciudad" name ="ciudad"placeholder="Nombre de la ciudad">
+    <br>
+    <label for="cp"> Codigo Postal:</label>
+    <input type="text" id="cp"  name ="cp"placeholder="Codigo postal">
+    <br>
+    <label for="habitantes"> Habitantes:</label>
+    <input type="text" id="habitantes" name ="habitantes" placeholder="Numero de habitantes">
+    <br>
+
+    <button type="submit">Anadir Ciudad</button>
+</form>
+<h2>Listado de ciudades:</h2>
+<ul id="listaCiudades"></ul>
+<div id="estadisticas"></div>
+<script>
+    const CLAVE_LS = "ciudades_dwec";
+    // =========================================================
+    // Código auxiliar para recuperar los datos del Local Storage
+    // =========================================================
+
+    function revivirObjetoCiudad(arrayObj) {
+        return arrayObj.map(elemento =>
+            new Ciudad(
+                elemento.ciudad,
+                String(elemento.cp),
+                Number(elemento.habitantes)
+            )
+        );
+    }
+
+    function cargarDeLocalStorage() {
+        try {
+            const ciudadesCadena = localStorage.getItem(CLAVE_LS);
+            if (!ciudadesCadena) return [];
+            const parsed = JSON.parse(ciudadesCadena);
+            // Aseguramos instancias de Ciudad
+            return revivirObjetoCiudad(parsed);
+        } catch {
+            return [];
+        }
+    }
+
+    function actualizarInvLocal(actualizado){
+
+        localStorage.setItem(CLAVE_LS, JSON.stringify(actualizado))
+
+    }
+
+    // =========================================================
+    // Ejemplo de uso de la función de carga
+    // =========================================================
+
+    // let ciudades = cargarDeLocalStorage();
+
+    let ciudades = cargarDeLocalStorage()
+
+    // =========================================================
+    //  Tu solución aquí
+    //  ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+    // ==========================================================
+
+    // 1. Clases
+    class Ciudad {
+        constructor(ciudad, cp, habitantes) {
+            this.ciudad = ciudad;
+            this.cp = cp;
+            this.habitantes = Number(habitantes);
+
+            this.mostrarInformacion = function () {
+                return this.ciudad + " (" + this.cp + ") - " + this.habitantes + " habitantes";
+            };
+        }
+    }
+
+    class objetoEstadisticas {
+        constructor(totalCiudades, totalHabitantes, ciudadMasGrande,
+                    ciudadMenosHabitantes, promedioHabitantes) {
+
+            this.totalCiudades = Number(totalCiudades);
+            this.totalHabitantes = Number(totalHabitantes);
+            this.ciudadMasGrande = String(ciudadMasGrande);
+            this.ciudadMenosHabitantes = String(ciudadMenosHabitantes);
+            this.promedioHabitantes = Number(promedioHabitantes);
+
+            this.mostrarInformacion = function () {
+                return this.ciudad + " (" + this.cp + ") - " + this.habitantes + " habitantes";
+            };
+        }
+    }
+
+    // 2. Funciones de renderizado, estadísticas y filtro
+    function renderizarCiudades(arrayCiudades) {
+        const lista = document.getElementById("listaCiudades");
+        lista.innerHTML = "";
+
+        console.log(arrayCiudades)
+
+        for (let i = 0; i < arrayCiudades.length; i++) {
+            const li = document.createElement("li");
+            li.textContent = arrayCiudades[i].mostrarInformacion();
+            lista.appendChild(li);
+        }
+    }
+
+    function calculoEstadisticas(arrayCiudades) {
+        const divEstadisticas = document.getElementById("estadisticas");
+
+        if (arrayCiudades.length === 0) {
+            divEstadisticas.innerHTML = "<p>No hay ciudades registradas todavía.</p>";
+            return;
+        }
+
+        const totCiudad = arrayCiudades.length;
+
+        const totHabi = arrayCiudades.reduce(function (acu, item) {
+            return acu + Number(item.habitantes);
+        }, 0);
+
+        const mashabi = arrayCiudades.reduce(function (acu, ciudad) {
+            return ciudad.habitantes > acu.habitantes ? ciudad : acu;
+        }, arrayCiudades[0]);
+
+        const menoshabi = arrayCiudades.reduce(function (acu, ciudad) {
+            return ciudad.habitantes < acu.habitantes ? ciudad : acu;
+        }, arrayCiudades[0]);
+
+        const promeHabi = totHabi / totCiudad;
+
+        divEstadisticas.innerHTML = `
+        <h2>Estadísticas de las ciudades</h2>
+        <p><strong>Total de ciudades:</strong> ${totCiudad}</p>
+        <p><strong>Total de habitantes:</strong> ${totHabi}</p>
+        <p><strong>Ciudad con más habitantes:</strong> ${mashabi.ciudad} (${mashabi.habitantes})</p>
+        <p><strong>Ciudad con menos habitantes:</strong> ${menoshabi.ciudad} (${menoshabi.habitantes})</p>
+        <p><strong>Promedio de habitantes:</strong> ${promeHabi.toFixed(2)}</p>
+        <button id="botonEstadisticas" type="button">FILTRAR POR NUM HABITANTES</button>
+        <button id="botonEliminar" type="button">ELIMINAR POR NOMBRE</button>
+
+        <ul id="estadisticasFiltradas"></ul>
+    `;
+
+        // Enganchamos el evento aquí cada vez que se pinta el botón
+        const botonestadistica = document.getElementById("botonEstadisticas");
+        botonestadistica.addEventListener("click", function () {
+            const habitantePaFiltrar = prompt("Indica el numero de habitantes: ");
+            if (habitantePaFiltrar !== null && habitantePaFiltrar.trim() !== "") {
+                filtrarCiudadesPorHabitantes(ciudades, Number(habitantePaFiltrar));
+            }
+        });
+
+        const botonEliminar = document.getElementById("botonEliminar");
+
+        botonEliminar.addEventListener("click", function () {
+            console.log(ciudades)
+            const ciudadEliminar = prompt("Indica la ciudad a eliminar ");
+            if (ciudadEliminar !== null && ciudadEliminar.trim() !== "") {
+
+                eliminarCiudad(ciudades, ciudadEliminar);
+            }
+        });
+
+        // ----- PRUEBAS -----
+        console.log("TOTAL CIUDAD:", totCiudad);
+        console.log("TOTAL habi:", totHabi);
+        console.log("ciudad Mas Grande:", mashabi.ciudad);
+        console.log("ciudad mas peque:", menoshabi.ciudad);
+        console.log("promedio habitantes:", promeHabi.toFixed(2));
+    }
+
+    function filtrarCiudadesPorHabitantes(arrayCiudades, numero) {
+        const estFilt = document.getElementById("estadisticasFiltradas");
+        estFilt.innerHTML = ""; // Limpia el filtro anterior para que no se acumulen
+
+        const ciudadesFiltradas = arrayCiudades.filter(function (ciudad) {
+            return ciudad.habitantes >= numero;
+        });
+
+        if (ciudadesFiltradas.length === 0) {
+            const li = document.createElement("li");
+            li.textContent = "No existe ninguna ciudad con " + numero + " o más habitantes.";
+            estFilt.appendChild(li);
+        } else {
+            for (let i = 0; i < ciudadesFiltradas.length; i++) {
+                const li = document.createElement("li");
+                li.textContent = ciudadesFiltradas[i].mostrarInformacion();
+                estFilt.appendChild(li);
+            }
+        }
+    }
+
+
+    function eliminarCiudad (arrayCiudades, nombreCiudad){
+        const constarryCiudadFiltrada = arrayCiudades.filter(function (ciudad){
+            if (ciudad.ciudad !== nombreCiudad){
+                return ciudad
+            }
+        });
+
+        actualizarInvLocal(arryCiudadFiltrada)
+        ciudades = cargarDeLocalStorage();
+        renderizarCiudades(arryCiudadFiltrada)
+    }
+    // 3. Validación y envío del formulario
+    const form = document.getElementById("formCiudades");
+    form.addEventListener("submit", validarCampos);
+
+    function validarCampos(e) {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        let errores = [];
+
+        const ciudad = (data.get("ciudad") || "").trim();
+        if (ciudad === "") {
+            errores.push("El campo ciudad esta vacio");
+        }
+
+        const cp = (data.get("cp") || "").trim();
+        const regexCP = /^[1-9]\d{4}$/;
+        if (!cp.match(regexCP)) {
+            errores.push("El campo CP esta vacio/no es correcto");
+        }
+
+        const habitantes = (data.get("habitantes") || "").trim();
+        const regexHab = /^[1-9]\d*$/;
+        if (!habitantes.match(regexHab)) {
+            errores.push("El campo habitantes esta vacio/no es correcto");
+        }
+
+        if (errores.length > 0) {
+            alert(errores.join("\n"));
+        } else {
+            ciudades = cargarDeLocalStorage();
+            ciudades.push(new Ciudad(ciudad, cp, habitantes));
+            actualizarInvLocal(ciudades);
+            renderizarCiudades(ciudades);
+            calculoEstadisticas(ciudades);
+            form.reset();
+        }
+    }
+
+
+
+    // 4. Inicio del programa
+    console.log("---INICIO DE PROGRAMA---");
+    ciudades = cargarDeLocalStorage();
+    console.log(ciudades);
+    renderizarCiudades(ciudades);
+    calculoEstadisticas(ciudades);
+    console.log("---FIN INICIO DE PROGRAMA---");
+    console.log("---")
+    console.log(ciudades)
+    console.log("---")
+
+
+</script>
+
+</body>
+</html>

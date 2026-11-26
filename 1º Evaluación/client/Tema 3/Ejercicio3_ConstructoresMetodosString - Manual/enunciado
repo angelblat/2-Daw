@@ -1,0 +1,35 @@
+Crea una pequeña aplicación de gestión de libros que puedas:
+Registrar libros con las propiedades:
+
+titulo (String)
+autor (String)
+año (String)
+género (String)
+
+1. Cada libro debe de ser un objeto, creado a través de un constructor o clase.
+2. Cada objeto o libro debe tener un método mostrarInfo() que devuelva el texto con su información.
+3. Almacena los libros en un array llamado biblioteca.
+4. Muestra en pantalla la lista de libros registrados.
+5. Agrega la funcionalidad de añadir nuevos libros, eliminar por titulo y mostrar la biblioteca actualizada.
+Titulo: Cien años de soledad autor: Gabriel Garcia Marquez Año 1967 Género Realismo mágico
+
+Salida esperada en pantalla:
+
+Cien años de soledad (1967) - Gabriel Garcia Vazquez - Realismo mágico
+
+this.getmodelo = function () {
+return this.modelo
+}
+
+function coche(modelo, color, kms, combustible) {
+this.modelo = modelo;
+this.color = color;
+this.kms = kms;
+this.combustible = combustible;
+this.setmodelo = function (nuevoModelo) {
+this.modelo = nuevoModelo;
+}
+this.getModelo = function () {
+return this.modelo;
+}
+}
